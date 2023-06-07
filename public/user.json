@@ -1,37 +1,37 @@
 [
     {
         "name": "Johad",
-        "img": "https://i.ibb.co/hmnHQkP/johad.png",
+        "img": "https://i.ibb.co/hW4rDRf/johad.png",
         "email": "johad@gmail.com",
         "role": "instructor"
     },
     {
-        "name": "Tuhin",
-        "img": "https://i.ibb.co/hmnHQkP/johad.png",
+        "name": "Tanzir Tuhin",
+        "img": "https://i.ibb.co/M8D1kTy/tuhin.jpg",
         "email": "tuhin@gmail.com",
         "role": "instructor"
     },
     {
-        "name": "Jia",
-        "img": "https://i.ibb.co/hmnHQkP/johad.png",
+        "name": "Ziaur Rahman Zia",
+        "img": "https://i.ibb.co/JtYm86g/Zia.jpg",
         "email": "jia@gmail.com",
         "role": "instructor"
     },
     {
         "name": "Emon Chowdhury",
-        "img": "https://i.ibb.co/hmnHQkP/johad.png",
+        "img": "https://i.ibb.co/stGd7Sc/emon.jpg",
         "email": "emon@gmail.com",
         "role": "instructor"
     },
     {
-        "name": "Bakhtiar",
-        "img": "https://i.ibb.co/hmnHQkP/johad.png",
+        "name": "Bakhtiar Hossain",
+        "img": "https://i.ibb.co/mDGf9Nk/bakhtiar.jpg",
         "email": "bakhtiar@gmail.com",
         "role": "instructor"
     },
     {
         "name": "Bass Baba Sumon",
-        "img": "https://i.ibb.co/hmnHQkP/johad.png",
+        "img": "https://i.ibb.co/8bMm40c/sumon.jpg",
         "email": "sumon@gmail.com",
         "role": "instructor"
     }
