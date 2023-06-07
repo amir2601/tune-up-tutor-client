@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import useTitle from '../../Hooks/useTitle';
 import { AuthContext } from '../../Provider/AuthProvider';
 import SocialLogin from '../../components/Shared/SocialLogin/SocialLogin';
+import Swal from 'sweetalert2';
 
 
 const Register = () => {
     useTitle('Register');
     const [error, setError] = useState('')
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
 
     const handleSignUp = event => {
         event.preventDefault();
@@ -18,7 +19,7 @@ const Register = () => {
         const email = form.email.value;
         const photo = form.photo.value;
         const password = form.password.value;
-        const confirmPassword = form.confirm-password.value;
+        const confirmPassword = form.confirmPassword.value;
 
         if (password !== confirmPassword) {
             return setError('Password Did not match')
@@ -26,9 +27,37 @@ const Register = () => {
 
         createUser(email, password)
             .then(result => {
-                const user = result.user;
-                console.log(user);
-                form.reset();
+                const loggedUser = result.user;
+                console.log(loggedUser);
+
+                updateUserProfile(name, photo)
+                    .then(() => {
+                        const saveUser = { name: name, email: email, role: 'student' }
+                        fetch('http://localhost:5000/users', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(saveUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    form.reset();
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'success',
+                                        title: 'Sign Up Successfull',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                    navigate('/')
+                                }
+                            })
+                    })
+                    .catch(error => {
+                        console.log(error.message);
+                    })
                 setError('')
             })
             .catch(error => {
@@ -77,7 +106,7 @@ const Register = () => {
                                     <label className="label">
                                         <span className="label-text">Confirm Password</span>
                                     </label>
-                                    <input type="password" name='confirm-password' placeholder="password" className="input input-bordered" required />
+                                    <input type="password" name='confirmPassword' placeholder="confirm password" className="input input-bordered" required />
                                 </div>
                                 <div className="form-control mt-6">
                                     <input className="btn btn-primary" type="submit" value="Sign Up" />

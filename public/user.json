@@ -2,31 +2,37 @@
     {
         "name": "Johad",
         "img": "https://i.ibb.co/hmnHQkP/johad.png",
-        "rating": "johad@gmail.com"
+        "email": "johad@gmail.com",
+        "role": "instructor"
     },
     {
         "name": "Tuhin",
         "img": "https://i.ibb.co/hmnHQkP/johad.png",
-        "rating": "tuhin@gmail.com"
+        "email": "tuhin@gmail.com",
+        "role": "instructor"
     },
     {
         "name": "Jia",
         "img": "https://i.ibb.co/hmnHQkP/johad.png",
-        "rating": "jia@gmail.com"
+        "email": "jia@gmail.com",
+        "role": "instructor"
     },
     {
         "name": "Emon Chowdhury",
         "img": "https://i.ibb.co/hmnHQkP/johad.png",
-        "rating": "emon@gmail.com"
+        "email": "emon@gmail.com",
+        "role": "instructor"
     },
     {
         "name": "Bakhtiar",
         "img": "https://i.ibb.co/hmnHQkP/johad.png",
-        "rating": "bakhtiar@gmail.com"
+        "email": "bakhtiar@gmail.com",
+        "role": "instructor"
     },
     {
         "name": "Bass Baba Sumon",
         "img": "https://i.ibb.co/hmnHQkP/johad.png",
-        "rating": "sumon@gmail.com"
+        "email": "sumon@gmail.com",
+        "role": "instructor"
     }
 ]
