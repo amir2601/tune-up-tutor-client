@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import SignUpImg from '../../assets/signup.png'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useTitle from '../../Hooks/useTitle';
 import { AuthContext } from '../../Provider/AuthProvider';
 import SocialLogin from '../../components/Shared/SocialLogin/SocialLogin';
@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 
 const Register = () => {
     useTitle('Register');
+    const navigate = useNavigate();
     const [error, setError] = useState('')
     const { createUser, updateUserProfile } = useContext(AuthContext);
 
@@ -32,8 +33,8 @@ const Register = () => {
 
                 updateUserProfile(name, photo)
                     .then(() => {
-                        const saveUser = { name: name, email: email, role: 'student' }
-                        fetch('http://localhost:5000/users', {
+                        const saveUser = { name: name, email: email, role: 'student', img: photo }
+                        fetch(`${import.meta.env.VITE_API_URL}users`, {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
