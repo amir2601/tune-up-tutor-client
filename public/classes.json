@@ -1,0 +1,62 @@
+[
+    {
+        "className": "Guiter",
+        "name": "Johad",
+        "price": 24,
+        "seats": 20,
+        "students": 22,
+        "img": "https://i.ibb.co/ScLK306/violin.jpg",
+        "email": "johad@gmail.com",
+        "rating": 4.2
+    },
+    {
+        "className": "Drum",
+        "name": "Emon Choudhury",
+        "price": 29,
+        "seats": 18,
+        "students": 26,
+        "img": "https://i.ibb.co/ScLK306/violin.jpg",
+        "email": "emon@gmail.com",
+        "rating": 4.5
+    },
+    {
+        "className": "Lead Guitar",
+        "name": "Ziaur Rahman Zia",
+        "price": 36,
+        "seats": 22,
+        "students": 45,
+        "img": "https://i.ibb.co/ScLK306/violin.jpg",
+        "email": "zia@gmail.com",
+        "rating": 4.4
+    },
+    {
+        "className": "Bass Guiter",
+        "name": "Bass Baba Sumon",
+        "price": 45,
+        "seats": 15,
+        "students": 55,
+        "img": "https://i.ibb.co/ScLK306/violin.jpg",
+        "email": "sumon@gmail.com",
+        "rating": 5.0
+    },
+    {
+        "className": "Acoustic Guitar",
+        "name": "Emon Choudhury",
+        "price": 27,
+        "seats": 12,
+        "students": 42,
+        "img": "https://i.ibb.co/ScLK306/violin.jpg",
+        "email": "emon@gmail.com",
+        "rating": 4.9
+    },
+    {
+        "className": "Flute",
+        "name": "Bakhtiar Hossain",
+        "price": 34,
+        "seats": 24,
+        "students": 32,
+        "img": "https://i.ibb.co/ScLK306/violin.jpg",
+        "email": "bakhtiar@gmail.com",
+        "rating": 4.6
+    }
+]

@@ -14,7 +14,7 @@ const PopularInstructor = () => {
     }, [])
 
     return (
-        <div className='grid md:grid-cols-3 gap-4 mx-auto'>
+        <div className='grid md:grid-cols-3 gap-4 mx-auto my-4'>
             {
                 instructors.map(instructor => <PopularInstructorCard key={instructor._id} instructor={instructor}></PopularInstructorCard>)
             }

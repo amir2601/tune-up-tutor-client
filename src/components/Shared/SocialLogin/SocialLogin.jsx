@@ -37,10 +37,10 @@ const SocialLogin = () => {
         <div>
             <div className="divider">OR</div>
             <div className='text-center flex gap-4 justify-center'>
-                <button onClick={handleGoogleLogin} className="btn btn-circle btn-primary btn-outline">
+                <button onClick={handleGoogleLogin} className="btn btn-circle btn-accent btn-outline">
                     <FaGoogle></FaGoogle>
                 </button>
-                <button className="btn btn-circle btn-primary btn-outline">
+                <button className="btn btn-circle btn-accent btn-outline">
                     <FaGithub></FaGithub>
                 </button>
             </div>

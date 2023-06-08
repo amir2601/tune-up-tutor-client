@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import InstructorCard from './InstructorCard';
+import useTitle from '../../Hooks/useTitle';
 
 const Instructors = () => {
+    useTitle('Instructors');
     const [instructors, setInstructors] = useState([])
 
     useEffect(() => {
@@ -14,7 +16,7 @@ const Instructors = () => {
     }, [])
 
     return (
-        <div className='grid md:grid-cols-3 gap-4 mx-auto'>
+        <div className='grid md:grid-cols-3 gap-4 mx-auto my-4'>
             {
                 instructors.map(instructor => <InstructorCard key={instructor._id} instructor={instructor}></InstructorCard>)
             }

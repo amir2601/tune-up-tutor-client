@@ -5,27 +5,34 @@ import Home from '../Pages/Home/Home/Home';
 import Login from '../Pages/Login/Login';
 import Register from '../Pages/Register/Register';
 import Instructors from '../Pages/Instructors/Instructors';
+import Error from '../Pages/Error/Error';
+import Classes from '../Pages/Classes/Classes';
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
+        errorElement: <Error></Error>,
         children: [
             {
                 path: '/',
                 element: <Home></Home>,
             },
             {
-                path: 'login',
+                path: '/login',
                 element: <Login></Login>
             },
             {
-                path: 'sign-up',
+                path: '/sign-up',
                 element: <Register></Register>
             },
             {
-                path: 'instructors',
+                path: '/instructors',
                 element: <Instructors></Instructors>
+            },
+            {
+                path: '/classes',
+                element: <Classes></Classes>
             }
         ]
     },
