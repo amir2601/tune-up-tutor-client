@@ -21,18 +21,30 @@ const Dashboard = () => {
                 <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
                     {/* Sidebar content here */}
                     {
-                        userRole === 'admin' ? <>
-                            <li><NavLink  to="/dashboard/admin-home">Admin Home</NavLink></li>
-                            <li><NavLink  to="/dashboard/manage-classes">Manage Classes</NavLink></li>
-                            <li><NavLink  to="/dashboard/manage-users">Manage Users</NavLink></li>
-                        </> : <>
+                        userRole === 'admin' && <>
+                            <li><NavLink to="/">Home</NavLink></li>
+                            <li><NavLink to="/dashboard/admin-home">Admin Home</NavLink></li>
+                            <li><NavLink to="/dashboard/manage-classes">Manage Classes</NavLink></li>
+                            <li><NavLink to="/dashboard/manage-users">Manage Users</NavLink></li>
+                        </>
+                    }
+                    {
+                        userRole === 'student' && <>
+                            <li><NavLink to="/">Home</NavLink></li>
                             <li><NavLink to="/dashboard/student-home">Student Home</NavLink></li>
                             <li><NavLink to="/dashboard/my-selected-classes">My Selected Classes</NavLink></li>
                             <li><NavLink to="/dashboard/my-enrolled-classes">My Enrolled Classes</NavLink></li>
                         </>
                     }
+                    {
+                        userRole === 'instructor' && <>
+                            <li><NavLink to="/">Home</NavLink></li>
+                            <li><NavLink to="/dashboard/instructor-home">Instructor Home</NavLink></li>
+                            <li><NavLink to="/dashboard/add-class">Add a Class</NavLink></li>
+                            <li><NavLink to="/dashboard/my-class">My Classes</NavLink></li>
+                        </>
+                    }
                 </ul>
-
             </div>
         </div>
     );

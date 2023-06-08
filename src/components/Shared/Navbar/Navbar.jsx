@@ -38,10 +38,13 @@ const Navbar = () => {
             userRole === 'admin' && <li><NavLink to='/dashboard/admin-home'>Dashboard </NavLink></li>
         }
         {
+            userRole === 'instructor' && <li><NavLink to='/dashboard/instructor-home'>Dashboard </NavLink></li>
+        }
+        {
             userRole === 'student' && <li><NavLink to='/dashboard/student-home'>Dashboard </NavLink></li>
         }
         {
-            userRole === null && <li><NavLink to='/no-page-found'>Dashboard </NavLink></li>
+            userRole === null && <li><Link to='/login'>Dashboard </Link></li>
         }
 
     </>

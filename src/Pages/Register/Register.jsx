@@ -30,10 +30,22 @@ const Register = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
+                console.log(result);
 
                 updateUserProfile(name, photo)
                     .then(() => {
                         const saveUser = { name: name, email: email, role: 'student', img: photo }
+
+                        form.reset();
+                        navigate('/')
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Sign Up Successfull',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+
                         fetch(`${import.meta.env.VITE_API_URL}users`, {
                             method: 'POST',
                             headers: {
@@ -43,17 +55,7 @@ const Register = () => {
                         })
                             .then(res => res.json())
                             .then(data => {
-                                if (data.insertedId) {
-                                    form.reset();
-                                    Swal.fire({
-                                        position: 'center',
-                                        icon: 'success',
-                                        title: 'Sign Up Successfull',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    })
-                                    navigate('/')
-                                }
+                                console.log(data);
                             })
                     })
                     .catch(error => {

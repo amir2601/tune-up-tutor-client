@@ -8,9 +8,11 @@ import Instructors from '../Pages/Instructors/Instructors';
 import Error from '../Pages/Error/Error';
 import Classes from '../Pages/Classes/Classes';
 import Dashboard from '../Layout/Dashboard';
-import StudentHome from '../Pages/Dashboard/StudentHome/StudentHome';
-import AdminHome from '../Pages/Dashboard/AdminHome/AdminHome';
 import PrivateRoutes from './PrivateRoutes';
+import StudentHome from '../Pages/Dashboard/Student/StudentHome';
+import AdminHome from '../Pages/Dashboard/Admin/AdminHome';
+import SelectedClasses from '../Pages/Dashboard/Student/SelectedClasses';
+import InstructorHome from '../Pages/Dashboard/Instructors/InstructorHome';
 
 const router = createBrowserRouter([
     {
@@ -47,12 +49,20 @@ const router = createBrowserRouter([
         </PrivateRoutes>,
         children: [
             {
+                path: '/dashboard/admin-home',
+                element: <AdminHome></AdminHome>
+            },
+            {
+                path: '/dashboard/instructor-home',
+                element: <InstructorHome></InstructorHome>
+            },
+            {
                 path: '/dashboard/student-home',
                 element: <StudentHome></StudentHome>
             },
             {
-                path: '/dashboard/admin-home',
-                element: <AdminHome></AdminHome>
+                path: '/dashboard/selected-classes',
+                element: <SelectedClasses></SelectedClasses>
             }
         ]
     }
