@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ClassesCard from './ClassesCard';
 import useTitle from '../../Hooks/useTitle';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Classes = () => {
+    const {user} = useContext(AuthContext);
+    // const [userRole, setUserRole] = useState('')
     useTitle('Classes')
     const [classes, setClasses] = useState([])
 
@@ -14,6 +17,18 @@ const Classes = () => {
                 setClasses(data);
             })
     }, [])
+
+    // useEffect(() => {
+    //     fetch(`${import.meta.env.VITE_API_URL}users/${user?.email}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             console.log(data);
+    //             setUserRole(data.role);
+    //             localStorage.setItem('user-role', data.role)
+    //         })
+    // }, [])
+
+    // console.log(userRole);
 
     return (
         <div>

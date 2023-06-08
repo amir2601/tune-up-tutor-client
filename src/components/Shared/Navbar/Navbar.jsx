@@ -1,30 +1,37 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import logo from '../../../assets/logo.png'
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
+    const userRole = localStorage.getItem('user-role');
+    console.log(userRole);
 
     const handleLogOut = () => {
         logOut()
-            .then(() => { })
+            .then(() => {
+                localStorage.removeItem('user-role')
+            })
             .catch(error => {
                 console.log(error.message);
             })
     }
 
+    useEffect(() => {
+        fetch(`${import.meta.env.VITE_API_URL}users/${user?.email}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                localStorage.setItem('user-role', data.role)
+            })
+    }, [])
+
     const navItems = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/instructors">Instructors</NavLink></li>
         <li><NavLink to="/classes">Classes</NavLink></li>
-        <li><NavLink to="/dashboard ">Dashboard </NavLink></li>
-        {/* {
-            user?.email && <>
-                <li><NavLink to='/addToy'>Add Toys</NavLink></li>
-                <li><NavLink to='/myToys'>My Toys</NavLink></li>
-            </>
-        } */}
+        <li><NavLink to={ userRole === 'admin' ? '/dashboard/admin-home' : '/dashboard/student-home'}>Dashboard </NavLink></li>
 
     </>
 
