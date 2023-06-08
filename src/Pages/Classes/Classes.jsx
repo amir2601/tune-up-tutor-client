@@ -18,18 +18,6 @@ const Classes = () => {
             })
     }, [])
 
-    // useEffect(() => {
-    //     fetch(`${import.meta.env.VITE_API_URL}users/${user?.email}`)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log(data);
-    //             setUserRole(data.role);
-    //             localStorage.setItem('user-role', data.role)
-    //         })
-    // }, [])
-
-    // console.log(userRole);
-
     return (
         <div>
             <div className="text-sm breadcrumbs mx-auto bg-slate-300 rounded-xl w-1/6 flex justify-center">
