@@ -16,10 +16,19 @@ const Instructors = () => {
     }, [])
 
     return (
-        <div className='grid md:grid-cols-3 gap-4 mx-auto my-4'>
-            {
-                instructors.map(instructor => <InstructorCard key={instructor._id} instructor={instructor}></InstructorCard>)
-            }
+        <div>
+            <div className="text-sm breadcrumbs mx-auto bg-slate-300 rounded-xl w-1/6 flex justify-center">
+                <ul>
+                    <li><a>Home</a></li>
+                    <li><a>Instructors</a></li>
+                </ul>
+            </div>
+            <h2 className='text-3xl text-center font-semibold my-2'>Classes</h2>
+            <div className='grid md:grid-cols-3 gap-4 mx-auto my-4'>
+                {
+                    instructors.map(instructor => <InstructorCard key={instructor._id} instructor={instructor}></InstructorCard>)
+                }
+            </div>
         </div>
     );
 };

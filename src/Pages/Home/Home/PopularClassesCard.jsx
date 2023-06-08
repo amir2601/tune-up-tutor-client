@@ -1,11 +1,15 @@
 import React from 'react';
 
-const PopularClassesCard = () => {
+const PopularClassesCard = ({ popularClass }) => {
     return (
         <div>
             <div className="card card-compact w-full bg-base-100 shadow-xl">
-                <figure><img src={singleClass.img} alt="Shoes" /></figure>
+                <figure><img src={popularClass.img} alt="Shoes" /></figure>
             </div>
+            {/* <div className="card-body">
+                <h2 className="card-title">{popularClass.name}</h2>
+                <h2 className="card-title">{popularClass.students}</h2>
+            </div> */}
         </div>
     );
 };
