@@ -1,11 +1,12 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import logo from '../../../assets/logo.png'
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
 
 const Navbar = () => {
-    const { user, logOut } = useContext(AuthContext);
-    const userRole = localStorage.getItem('user-role');
+    const { user, logOut, loading } = useContext(AuthContext);
+    // const userRole = localStorage.getItem('user-role');
+    const [userRole, setUserRole] = useState(null)
     console.log(userRole);
 
     const handleLogOut = () => {
@@ -23,15 +24,25 @@ const Navbar = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                setUserRole(data.role)
                 localStorage.setItem('user-role', data.role)
             })
-    }, [])
+    }, [user])
 
     const navItems = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/instructors">Instructors</NavLink></li>
         <li><NavLink to="/classes">Classes</NavLink></li>
-        <li><NavLink to={ userRole === 'admin' ? '/dashboard/admin-home' : '/dashboard/student-home'}>Dashboard </NavLink></li>
+        {/* <li><NavLink to={ userRole === 'admin' ? '/dashboard/admin-home' : '/dashboard/student-home'}>Dashboard </NavLink></li> */}
+        {
+            userRole === 'admin' && <li><NavLink to='/dashboard/admin-home'>Dashboard </NavLink></li>
+        }
+        {
+            userRole === 'student' && <li><NavLink to='/dashboard/student-home'>Dashboard </NavLink></li>
+        }
+        {
+            userRole === null && <li><NavLink to='/no-page-found'>Dashboard </NavLink></li>
+        }
 
     </>
 

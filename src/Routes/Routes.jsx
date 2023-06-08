@@ -10,6 +10,7 @@ import Classes from '../Pages/Classes/Classes';
 import Dashboard from '../Layout/Dashboard';
 import StudentHome from '../Pages/Dashboard/StudentHome/StudentHome';
 import AdminHome from '../Pages/Dashboard/AdminHome/AdminHome';
+import PrivateRoutes from './PrivateRoutes';
 
 const router = createBrowserRouter([
     {
@@ -41,7 +42,9 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoutes>
+            <Dashboard></Dashboard>
+        </PrivateRoutes>,
         children: [
             {
                 path: '/dashboard/student-home',

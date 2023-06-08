@@ -15,7 +15,9 @@ const SocialLogin = () => {
             .then(result => {
                 const loggedInUser = result.user;
                 console.log(loggedInUser);
+
                 const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email, role: 'student', img: loggedInUser.photoURL }
+                
                 fetch(`${import.meta.env.VITE_API_URL}users`, {
                     method: 'POST',
                     headers: {

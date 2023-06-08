@@ -1,10 +1,11 @@
 import React from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+    const userRole = localStorage.getItem('user-role');
 
     return (
         <div className="drawer lg:drawer-open">
@@ -19,8 +20,17 @@ const Dashboard = () => {
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
                     {/* Sidebar content here */}
-                    <li><a>Sidebar Item 1</a></li>
-                    <li><a>Sidebar Item 2</a></li>
+                    {
+                        userRole === 'admin' ? <>
+                            <li><NavLink  to="/dashboard/admin-home">Admin Home</NavLink></li>
+                            <li><NavLink  to="/dashboard/manage-classes">Manage Classes</NavLink></li>
+                            <li><NavLink  to="/dashboard/manage-users">Manage Users</NavLink></li>
+                        </> : <>
+                            <li><NavLink to="/dashboard/student-home">Student Home</NavLink></li>
+                            <li><NavLink to="/dashboard/my-selected-classes">My Selected Classes</NavLink></li>
+                            <li><NavLink to="/dashboard/my-enrolled-classes">My Enrolled Classes</NavLink></li>
+                        </>
+                    }
                 </ul>
 
             </div>
