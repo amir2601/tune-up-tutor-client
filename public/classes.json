@@ -1,13 +1,12 @@
 [
     {
-        "className": "Guiter",
+        "className": "Violin",
         "name": "Johad",
         "price": 24,
         "seats": 20,
         "students": 22,
-        "img": "https://i.ibb.co/ScLK306/violin.jpg",
-        "email": "johad@gmail.com",
-        "rating": 4.2
+        "img": "https://i.ibb.co/swkzrJK/violin.jpg",
+        "email": "johad@gmail.com"
     },
     {
         "className": "Drum",
@@ -15,9 +14,8 @@
         "price": 29,
         "seats": 18,
         "students": 26,
-        "img": "https://i.ibb.co/ScLK306/violin.jpg",
-        "email": "emon@gmail.com",
-        "rating": 4.5
+        "img": "https://i.ibb.co/yqpXnxC/drum.jpg",
+        "email": "emon@gmail.com"
     },
     {
         "className": "Lead Guitar",
@@ -25,9 +23,8 @@
         "price": 36,
         "seats": 22,
         "students": 45,
-        "img": "https://i.ibb.co/ScLK306/violin.jpg",
-        "email": "zia@gmail.com",
-        "rating": 4.4
+        "img": "https://i.ibb.co/ZzRhW02/lead-guitar.jpg",
+        "email": "zia@gmail.com"
     },
     {
         "className": "Bass Guiter",
@@ -35,9 +32,8 @@
         "price": 45,
         "seats": 15,
         "students": 55,
-        "img": "https://i.ibb.co/ScLK306/violin.jpg",
-        "email": "sumon@gmail.com",
-        "rating": 5.0
+        "img": "https://i.ibb.co/cLJRQ7T/bass-guitar.jpg",
+        "email": "sumon@gmail.com"
     },
     {
         "className": "Acoustic Guitar",
@@ -45,9 +41,8 @@
         "price": 27,
         "seats": 12,
         "students": 42,
-        "img": "https://i.ibb.co/ScLK306/violin.jpg",
-        "email": "emon@gmail.com",
-        "rating": 4.9
+        "img": "https://i.ibb.co/JxRCJgD/guitar.jpg",
+        "email": "emon@gmail.com"
     },
     {
         "className": "Flute",
@@ -55,8 +50,7 @@
         "price": 34,
         "seats": 24,
         "students": 32,
-        "img": "https://i.ibb.co/ScLK306/violin.jpg",
-        "email": "bakhtiar@gmail.com",
-        "rating": 4.6
+        "img": "https://i.ibb.co/Cb49hrz/flute.jpg",
+        "email": "bakhtiar@gmail.com"
     }
 ]

@@ -46,8 +46,8 @@ const ClassesCard = ({ singleClass }) => {
                     <h2 className="text-lg"><span className='font-semibold'>Instructor Name:</span> {singleClass.name}</h2>
                     <p><span className='font-semibold'>Instructor Email:</span> {singleClass.email}</p>
                     <div className="card-actions justify-start">
+                        <div className="badge badge-outline">Price</div>
                         <div className="badge badge-outline">$ {singleClass.price}</div>
-                        <div className="badge badge-outline items-center gap-1 text-yellow-500"><FaStar></FaStar> {singleClass.rating}</div>
                     </div>
                     <div className="card-actions justify-end">
                         <button onClick={() => handleSelectClass(singleClass)} disabled={singleClass.seats === 0 || userRole === 'admin' || userRole === 'instructor' ? true : false} className="btn btn-neutral btn-outline btn-sm">Select Class</button>

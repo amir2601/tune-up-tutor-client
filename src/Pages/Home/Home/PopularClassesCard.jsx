@@ -3,7 +3,7 @@ import React from 'react';
 const PopularClassesCard = ({ popularClass }) => {
     return (
         <div>
-            <div className="card card-compact w-full bg-base-100 shadow-xl">
+            <div className="card card-compact w-full bg-base-100 shadow-xl hover:scale-95">
                 <figure><img src={popularClass.img} alt="Shoes" /></figure>
             </div>
             {/* <div className="card-body">
