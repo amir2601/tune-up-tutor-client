@@ -8,7 +8,6 @@ const PopularInstructor = () => {
         fetch(`${import.meta.env.VITE_API_URL}popular-instructors`)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setInstructors(data);
             })
     }, [])

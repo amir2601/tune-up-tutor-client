@@ -13,7 +13,6 @@ const Classes = () => {
         fetch(`${import.meta.env.VITE_API_URL}classes`)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setClasses(data);
             })
     }, [])

@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 const ClassesCard = ({ singleClass }) => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
-    const [selected, setSelected] = useState(false);
     const userRole = localStorage.getItem('user-role');
 
     const handleSelectClass = (selClass) => {
@@ -25,15 +24,12 @@ const ClassesCard = ({ singleClass }) => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                if (data.insertedId) {
-                    setSelected(true)
-                }
             })
     }
 
     return (
         <div>
-            <div className={singleClass.students === 0 ? 'card card-compact w-full bg-red-500 text-white shadow-xl' : 'card card-compact w-full bg-base-100 shadow-xl'}>
+            <div className={singleClass.seats === 0 ? 'card card-compact w-full bg-red-500 text-white shadow-xl' : 'card card-compact w-full bg-base-100 shadow-xl'}>
                 <figure><img src={singleClass.img} alt="Shoes" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{singleClass.className}</h2>
@@ -44,10 +40,7 @@ const ClassesCard = ({ singleClass }) => {
                         <div className="badge badge-outline items-center gap-1 text-yellow-500"><FaStar></FaStar> {singleClass.rating}</div>
                     </div>
                     <div className="card-actions justify-end">
-                        {/* <Link to={!user && '/login'}>
-                            <button onClick={() => handleSelectClass(singleClass)} disabled={singleClass.students === 0 || selected === true ? true : false} className="btn btn-neutral btn-outline btn-sm">Select Class</button>
-                        </Link> */}
-                        <button onClick={() => handleSelectClass(singleClass)} disabled={singleClass.students === 0 || selected === true || userRole === 'admin' || userRole === 'instructor' ? true : false} className="btn btn-neutral btn-outline btn-sm">Select Class</button>
+                        <button onClick={() => handleSelectClass(singleClass)} disabled={singleClass.seats === 0 || userRole === 'admin' || userRole === 'instructor' ? true : false} className="btn btn-neutral btn-outline btn-sm">Select Class</button>
                     </div>
                 </div>
             </div>
