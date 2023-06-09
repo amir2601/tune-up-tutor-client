@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const ClassesCard = ({ singleClass }) => {
     const { user } = useContext(AuthContext);
@@ -24,6 +25,15 @@ const ClassesCard = ({ singleClass }) => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Class Successfully Added',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
             })
     }
 
