@@ -6,7 +6,8 @@
         "seats": 20,
         "students": 22,
         "img": "https://i.ibb.co/swkzrJK/violin.jpg",
-        "email": "johad@gmail.com"
+        "email": "johad@gmail.com",
+        "status": "approved"
     },
     {
         "className": "Drum",
@@ -15,7 +16,8 @@
         "seats": 18,
         "students": 26,
         "img": "https://i.ibb.co/yqpXnxC/drum.jpg",
-        "email": "emon@gmail.com"
+        "email": "emon@gmail.com",
+        "status": "approved"
     },
     {
         "className": "Lead Guitar",
@@ -24,7 +26,8 @@
         "seats": 22,
         "students": 45,
         "img": "https://i.ibb.co/ZzRhW02/lead-guitar.jpg",
-        "email": "zia@gmail.com"
+        "email": "zia@gmail.com",
+        "status": "approved"
     },
     {
         "className": "Bass Guiter",
@@ -33,7 +36,8 @@
         "seats": 15,
         "students": 55,
         "img": "https://i.ibb.co/cLJRQ7T/bass-guitar.jpg",
-        "email": "sumon@gmail.com"
+        "email": "sumon@gmail.com",
+        "status": "approved"
     },
     {
         "className": "Acoustic Guitar",
@@ -42,7 +46,8 @@
         "seats": 12,
         "students": 42,
         "img": "https://i.ibb.co/JxRCJgD/guitar.jpg",
-        "email": "emon@gmail.com"
+        "email": "emon@gmail.com",
+        "status": "approved"
     },
     {
         "className": "Flute",
@@ -51,6 +56,7 @@
         "seats": 24,
         "students": 32,
         "img": "https://i.ibb.co/Cb49hrz/flute.jpg",
-        "email": "bakhtiar@gmail.com"
+        "email": "bakhtiar@gmail.com",
+        "status": "approved"
     }
 ]
