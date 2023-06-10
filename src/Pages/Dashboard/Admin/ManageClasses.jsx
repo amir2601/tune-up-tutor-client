@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import ManageClassesCard from './ManageClassesCard';
 
 const ManageClasses = () => {
-
+    const [reload, setReload] = useState(true)
     const [classes, setClasses] = useState([])
+    console.log(reload);
 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}added-classes`)
@@ -11,7 +12,7 @@ const ManageClasses = () => {
             .then(data => {
                 setClasses(data);
             })
-    }, [])
+    }, [reload])
 
     return (
         <div className='w-full mt-0'>
@@ -38,7 +39,7 @@ const ManageClasses = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            classes.map((singleClass, index) => <ManageClassesCard key={singleClass._id} index={index} singleClass={singleClass}></ManageClassesCard>)
+                            classes.map((singleClass, index) => <ManageClassesCard key={singleClass._id} index={index} singleClass={singleClass} setReload={setReload} ></ManageClassesCard>)
                         }
                     </tbody>
                 </table>

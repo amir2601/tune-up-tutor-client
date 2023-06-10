@@ -1,7 +1,44 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ManageClassesCard = ({ singleClass, index }) => {
+const ManageClassesCard = ({ singleClass, index, setReload }) => {
+
+    const handleUpdateStatus = (status, id) => {
+        const updateStatus = {status: status}
+        console.log(updateStatus);
+
+        fetch(`${import.meta.env.VITE_API_URL}classes/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updateStatus)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setReload(prevReload => !prevReload);
+            })
+    }
+
+    const handleSendFeedback = (status, id) => {
+        const updateStatus = {status: status}
+        console.log(updateStatus);
+
+        fetch(`${import.meta.env.VITE_API_URL}classes/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updateStatus)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setReload(prevReload => !prevReload);
+            })
+    }
+
     return (
         <tr>
             <td>
@@ -27,13 +64,13 @@ const ManageClassesCard = ({ singleClass, index }) => {
             <td className='text-end'>{singleClass.price}</td>
             <td>{singleClass.status}</td>
             <td>
-                <button disabled={singleClass?.status === 'approved'} className="btn btn-outline btn-success btn-xs">Approve</button>
+                <button onClick={() => handleUpdateStatus('approved', singleClass._id)} disabled={singleClass?.status === 'approved'} className="btn btn-outline btn-success btn-xs">Approve</button>
             </td>
             <td>
-                <button disabled={singleClass?.status === 'deny'} className="btn btn-outline btn-error btn-xs">Deny</button>
+                <button onClick={() => handleUpdateStatus('deny', singleClass._id)} disabled={singleClass?.status === 'deny'} className="btn btn-outline btn-error btn-xs">Deny</button>
             </td>
             <td>
-                <Link className="btn btn-outline btn-xs">Feedback</Link>
+                <button onClick={() => handleUpdateStatus('deny', singleClass._id)} className="btn btn-outline btn-xs">Feedback</button>
             </td>
         </tr>
     );

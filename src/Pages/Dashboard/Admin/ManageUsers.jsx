@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ManageUsersCard from './ManageUsersCard';
 
 const ManageUsers = () => {
+    const [reload, setReload] = useState(true)
     const [users, setUsers] = useState([])
 
     useEffect(() => {
@@ -10,7 +11,7 @@ const ManageUsers = () => {
             .then(data => {
                 setUsers(data);
             })
-    }, [])
+    }, [reload])
 
     return (
         <div className='w-full mt-0'>
@@ -33,7 +34,7 @@ const ManageUsers = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            users.map((user, index) => <ManageUsersCard key={user._id} index={index} user={user}></ManageUsersCard>)
+                            users.map((user, index) => <ManageUsersCard key={user._id} index={index} user={user} setReload={setReload}></ManageUsersCard>)
                         }
                     </tbody>
                 </table>
