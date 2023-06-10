@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const ManageClassesCard = ({ singleClass, index, setReload }) => {
 
     const handleUpdateStatus = (status, id) => {
-        const updateStatus = {status: status}
+        const updateStatus = { status: status }
         console.log(updateStatus);
 
         fetch(`${import.meta.env.VITE_API_URL}classes/${id}`, {
@@ -21,22 +21,52 @@ const ManageClassesCard = ({ singleClass, index, setReload }) => {
             })
     }
 
-    const handleSendFeedback = (status, id) => {
-        const updateStatus = {status: status}
-        console.log(updateStatus);
+    // const handleSendFeedback = (status, id) => {
+    //     const updateStatus = {status: status}
+    //     console.log(updateStatus);
 
-        fetch(`${import.meta.env.VITE_API_URL}classes/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'content-type': 'application/json'
+    //     fetch(`${import.meta.env.VITE_API_URL}classes/${id}`, {
+    //         method: 'PATCH',
+    //         headers: {
+    //             'content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify(updateStatus)
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             console.log(data);
+    //             setReload(prevReload => !prevReload);
+    //         })
+    // }
+
+    const handleFeedback = async (id) => {
+        const { value: text } = await Swal.fire({
+            input: 'textarea',
+            inputLabel: 'Message',
+            inputPlaceholder: 'Type your message here...',
+            inputAttributes: {
+                'aria-label': 'Type your message here'
             },
-            body: JSON.stringify(updateStatus)
+            showCancelButton: true
         })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                setReload(prevReload => !prevReload);
+
+        if (text) {
+            Swal.fire(text)
+            const feedback = {feedback: text};
+            console.log(feedback);
+
+            fetch(`${import.meta.env.VITE_API_URL}feedback/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(feedback)
             })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                })
+        }
     }
 
     return (
@@ -70,7 +100,7 @@ const ManageClassesCard = ({ singleClass, index, setReload }) => {
                 <button onClick={() => handleUpdateStatus('deny', singleClass._id)} disabled={singleClass?.status === 'deny'} className="btn btn-outline btn-error btn-xs">Deny</button>
             </td>
             <td>
-                <button onClick={() => handleUpdateStatus('deny', singleClass._id)} className="btn btn-outline btn-xs">Feedback</button>
+                <button onClick={() => handleFeedback(singleClass._id)} className="btn btn-outline btn-xs">Feedback</button>
             </td>
         </tr>
     );

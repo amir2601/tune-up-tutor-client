@@ -64,6 +64,8 @@ const router = createBrowserRouter([
                 path: 'manage-users',
                 element: <ManageUsers></ManageUsers>
             },
+
+            // instructor
             {
                 path: '/dashboard/instructor-home',
                 element: <InstructorHome></InstructorHome>
@@ -76,6 +78,8 @@ const router = createBrowserRouter([
                 path: 'my-class',
                 element: <MyClasses></MyClasses>
             },
+
+            // student
             {
                 path: '/dashboard/student-home',
                 element: <StudentHome></StudentHome>

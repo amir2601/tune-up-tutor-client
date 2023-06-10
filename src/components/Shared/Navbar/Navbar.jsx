@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
 
 const Navbar = () => {
-    const { user, logOut, loading } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     // const userRole = localStorage.getItem('user-role');
     const [userRole, setUserRole] = useState(null)
     console.log(userRole);
