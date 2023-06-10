@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import ManageClassesCard from './ManageClassesCard';
+import ManageUsersCard from './ManageUsersCard';
 
-const ManageClasses = () => {
-
-    const [classes, setClasses] = useState([])
+const ManageUsers = () => {
+    const [users, setUsers] = useState([])
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}added-classes`)
+        fetch(`${import.meta.env.VITE_API_URL}users`)
             .then(res => res.json())
             .then(data => {
-                setClasses(data);
+                setUsers(data);
             })
     }, [])
 
@@ -25,20 +24,16 @@ const ManageClasses = () => {
                         <tr>
                             <th>#</th>
                             <th>Image</th>
-                            <th>Class Name</th>
-                            <th>Instructor Name & Email</th>
-                            <th>Available Seats</th>
-                            <th>Price</th>
-                            <th>Status</th>
+                            <th>User Name & Email</th>
+                            <th>User Role</th>
                             <th>Action</th>
                             <th>Action</th>
-                            <th>Feedback</th>
                         </tr>
                     </thead>
                     <tbody>
                         {/* row 1 */}
                         {
-                            classes.map((singleClass, index) => <ManageClassesCard key={singleClass._id} index={index} singleClass={singleClass}></ManageClassesCard>)
+                            users.map((user, index) => <ManageUsersCard key={user._id} index={index} user={user}></ManageUsersCard>)
                         }
                     </tbody>
                 </table>
@@ -47,4 +42,4 @@ const ManageClasses = () => {
     );
 };
 
-export default ManageClasses;
+export default ManageUsers;

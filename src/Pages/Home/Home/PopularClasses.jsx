@@ -8,7 +8,8 @@ const PopularClasses = () => {
         fetch(`${import.meta.env.VITE_API_URL}popular-classes`)
             .then(res => res.json())
             .then(data => {
-                setPopularClasses(data);
+                const approved = data.filter(item => item.status === "approved");
+                setPopularClasses(approved);
             })
     }, [])
 

@@ -13,7 +13,9 @@ const Classes = () => {
         fetch(`${import.meta.env.VITE_API_URL}classes`)
             .then(res => res.json())
             .then(data => {
-                setClasses(data);
+                const approved = data.filter(item => item.status === "approved");
+                setClasses(approved);
+
             })
     }, [])
 

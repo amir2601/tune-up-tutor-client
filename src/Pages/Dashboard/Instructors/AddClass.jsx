@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const AddClass = () => {
     const { user } = useContext(AuthContext);
@@ -36,6 +37,16 @@ const AddClass = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Class successfully added',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    form.reset()
+                }
             })
 
     }

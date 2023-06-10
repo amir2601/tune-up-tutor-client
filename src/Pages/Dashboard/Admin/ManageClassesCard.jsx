@@ -27,10 +27,10 @@ const ManageClassesCard = ({ singleClass, index }) => {
             <td className='text-end'>{singleClass.price}</td>
             <td>{singleClass.status}</td>
             <td>
-                <Link className="btn btn-outline btn-success btn-xs">Approve</Link>
+                <button disabled={singleClass?.status === 'approved'} className="btn btn-outline btn-success btn-xs">Approve</button>
             </td>
             <td>
-                <Link className="btn btn-outline btn-error btn-xs">Deny</Link>
+                <button disabled={singleClass?.status === 'deny'} className="btn btn-outline btn-error btn-xs">Deny</button>
             </td>
             <td>
                 <Link className="btn btn-outline btn-xs">Feedback</Link>
