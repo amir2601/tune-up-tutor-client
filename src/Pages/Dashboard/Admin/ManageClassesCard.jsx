@@ -21,24 +21,6 @@ const ManageClassesCard = ({ singleClass, index, setReload }) => {
             })
     }
 
-    // const handleSendFeedback = (status, id) => {
-    //     const updateStatus = {status: status}
-    //     console.log(updateStatus);
-
-    //     fetch(`${import.meta.env.VITE_API_URL}classes/${id}`, {
-    //         method: 'PATCH',
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(updateStatus)
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log(data);
-    //             setReload(prevReload => !prevReload);
-    //         })
-    // }
-
     const handleFeedback = async (id) => {
         const { value: text } = await Swal.fire({
             input: 'textarea',

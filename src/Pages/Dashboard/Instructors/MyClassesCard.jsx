@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const MyClassesCard = ({ singleClass, index }) => {
+    const [classes, setClasses] = useState('')
+
+    const handleFeedback = () => {
+        Swal.fire('Admin Feedback', singleClass.feedback)
+
+    }
+
     return (
         <tr>
             <td>
@@ -23,10 +31,12 @@ const MyClassesCard = ({ singleClass, index }) => {
                 {singleClass.name}
             </td>
             <td className='text-end'>{singleClass.price}</td>
-            <td>{singleClass.status}</td>
+            <td>
+                <div className="badge badge-accent badge-outline">{singleClass.status}</div>
+            </td>
             <td className='text-center'>{singleClass.students}</td>
             <td>
-                <Link className="btn btn-ghost btn-xs">Feedback</Link>
+                <Link onClick={handleFeedback} className="btn btn-ghost btn-xs">Feedback</Link>
             </td>
             <td>
                 <Link className="btn btn-ghost btn-xs">Update</Link>

@@ -5,7 +5,6 @@ import { AuthContext } from '../../Provider/AuthProvider';
 
 const Classes = () => {
     const {user} = useContext(AuthContext);
-    // const [userRole, setUserRole] = useState('')
     useTitle('Classes')
     const [classes, setClasses] = useState([])
 
