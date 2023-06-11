@@ -6,8 +6,7 @@ const StudentHome = () => {
 
     return (
         <div>
-            Hello Student
-            <h2>Welcome {user.displayName}</h2>
+            <h2 className='text-3xl font-bold text-center mt-[45vh]'>Welcome {user.displayName}</h2>
         </div>
     );
 };

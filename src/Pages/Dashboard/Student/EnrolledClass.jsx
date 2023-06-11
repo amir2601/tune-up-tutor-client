@@ -1,26 +1,25 @@
 import React, { useContext, useEffect, useState } from 'react';
-import SelectedClassesRow from './SelectedClassesRow';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import EnrolledClassCard from './EnrolledClassCard';
 import useTitle from '../../../Hooks/useTitle';
 
-const SelectedClasses = () => {
-    useTitle('Selected Classes')
-    const {user} = useContext(AuthContext);
+const EnrolledClass = () => {
+    useTitle('Enrolled Classes')
+    const { user } = useContext(AuthContext)
     const [classes, setClasses] = useState([])
-    const [reload, setReload] = useState(true)
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}select-class/${user?.email}`)
+        fetch(`${import.meta.env.VITE_API_URL}enrolled-classes/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setClasses(data);
             })
-    }, [reload])
+    }, [])
 
     return (
         <div className='w-full mt-0'>
             <div className='text-center'>
-                <h2 className='text-3xl font-semibold my-4'>My Selected Classes</h2>
+                <h2 className='text-3xl font-semibold my-4'>My Enrolled Classes</h2>
             </div>
             <div className="overflow-x-auto">
                 <table className="table">
@@ -32,14 +31,12 @@ const SelectedClasses = () => {
                             <th>Class Name</th>
                             <th>Instructor Name</th>
                             <th>Price</th>
-                            <th>Delete</th>
-                            <th>Pay</th>
                         </tr>
                     </thead>
                     <tbody>
                         {/* row 1 */}
                         {
-                            classes.map((singleClass, index) => <SelectedClassesRow key={singleClass._id} index={index} singleClass={singleClass} setReload={setReload} ></SelectedClassesRow>)
+                            classes.map((singleClass, index) => <EnrolledClassCard key={singleClass._id} index={index} singleClass={singleClass}></EnrolledClassCard>)
                         }
                     </tbody>
                 </table>
@@ -48,4 +45,4 @@ const SelectedClasses = () => {
     );
 };
 
-export default SelectedClasses;
+export default EnrolledClass;

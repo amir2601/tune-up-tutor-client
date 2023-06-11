@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../Provider/AuthProvider';
 
 const InstructorHome = () => {
+    const {user} = useContext(AuthContext)
+
     return (
         <div>
-            <h2>Hello From instructor</h2>      
+            <h2 className='text-3xl font-bold text-center mt-[45vh]'>Welcome {user.displayName}</h2>
         </div>
     );
 };

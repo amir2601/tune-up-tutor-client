@@ -2,8 +2,11 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import './CheckoutForm.css'
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutForm = ({ singleClass }) => {
+    const navigate = useNavigate()
     const { user } = useContext(AuthContext)
     const stripe = useStripe();
     const elements = useElements();
@@ -77,6 +80,15 @@ const CheckoutForm = ({ singleClass }) => {
 
         if (paymentIntent.status === 'succeeded') {
             // save payment information to the server
+
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Payment Successfully Done',
+                showConfirmButton: false,
+                timer: 1500
+            })
+
             const paymentInfo = {
                 classId: singleClass._id,
                 name: singleClass.className,
@@ -106,7 +118,7 @@ const CheckoutForm = ({ singleClass }) => {
                 headers: {
                     'content-type': 'application/json'
                 },
-                body: JSON.stringify({paymentInfo, enrolledClass})
+                body: JSON.stringify({ paymentInfo, enrolledClass })
             })
                 .then(res => res.json())
                 .then(data => {

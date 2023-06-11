@@ -19,6 +19,8 @@ import ManageClasses from '../Pages/Dashboard/Admin/ManageClasses';
 import ManageUsers from '../Pages/Dashboard/Admin/ManageUsers';
 import CheckoutForm from '../components/Shared/Forms/CheckoutForm';
 import Payment from '../components/Shared/Forms/Payment';
+import EnrolledClass from '../Pages/Dashboard/Student/EnrolledClass';
+import PaymentHistory from '../Pages/Dashboard/Student/PaymentHistory';
 
 const router = createBrowserRouter([
     {
@@ -69,7 +71,7 @@ const router = createBrowserRouter([
 
             // instructor
             {
-                path: '/dashboard/instructor-home',
+                path: 'instructor-home',
                 element: <InstructorHome></InstructorHome>
             },
             {
@@ -94,6 +96,14 @@ const router = createBrowserRouter([
                 path: 'payment/:id',
                 element: <Payment></Payment>,
                 loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}classes/${params.id}`)
+            },
+            {
+                path: 'enrolled-classes',
+                element: <EnrolledClass></EnrolledClass>
+            },
+            {
+                path: 'payment-history',
+                element: <PaymentHistory></PaymentHistory>
             }
         ]
     }
