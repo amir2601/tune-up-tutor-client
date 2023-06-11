@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
 
-const SelectedClassesRow = ({ singleClass, index }) => {
+const SelectedClassesRow = ({ singleClass, index, setReload }) => {
 
     const handleDeleteClass = id => {
-
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -27,9 +25,14 @@ const SelectedClassesRow = ({ singleClass, index }) => {
                                 'success'
                             )
                         }
+                        setReload(prevReload => !prevReload);
                     })
             }
         })
+    }
+
+    const handlePaymentModal = price => {
+        localStorage.setItem('price', price)
     }
 
     return (
@@ -57,7 +60,7 @@ const SelectedClassesRow = ({ singleClass, index }) => {
                 <Link onClick={() => handleDeleteClass(singleClass._id)} className="btn btn-ghost btn-xs">Delete</Link>
             </td>
             <td>
-                <Link className="btn btn-ghost btn-xs">Pay</Link>
+                <Link to='/dashboard/payment' className="btn btn-ghost btn-xs" onClick={() => handlePaymentModal(singleClass.price)}>Pay</Link>
             </td>
         </tr>
     );

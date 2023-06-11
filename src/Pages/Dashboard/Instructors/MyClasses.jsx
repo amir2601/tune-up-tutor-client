@@ -17,7 +17,7 @@ const MyClasses = () => {
     return (
         <div className='w-full mt-0'>
             <div className='text-center'>
-                <h2 className='text-3xl font-semibold my-4'>My Selected Classes</h2>
+                <h2 className='text-3xl font-semibold my-4'>My Classes</h2>
             </div>
             <div className="overflow-x-auto">
                 <table className="table">

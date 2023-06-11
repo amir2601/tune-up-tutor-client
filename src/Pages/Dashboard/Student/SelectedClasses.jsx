@@ -5,6 +5,7 @@ import { AuthContext } from '../../../Provider/AuthProvider';
 const SelectedClasses = () => {
     const {user} = useContext(AuthContext);
     const [classes, setClasses] = useState([])
+    const [reload, setReload] = useState(true)
 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}select-class/${user?.email}`)
@@ -13,7 +14,7 @@ const SelectedClasses = () => {
                 console.log(data);
                 setClasses(data);
             })
-    }, [])
+    }, [reload])
 
     return (
         <div className='w-full mt-0'>
@@ -37,7 +38,7 @@ const SelectedClasses = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            classes.map((singleClass, index) => <SelectedClassesRow key={singleClass._id} index={index} singleClass={singleClass}></SelectedClassesRow>)
+                            classes.map((singleClass, index) => <SelectedClassesRow key={singleClass._id} index={index} singleClass={singleClass} setReload={setReload} ></SelectedClassesRow>)
                         }
                     </tbody>
                 </table>

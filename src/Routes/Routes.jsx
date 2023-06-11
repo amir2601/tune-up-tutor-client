@@ -17,6 +17,8 @@ import AddClass from '../Pages/Dashboard/Instructors/AddClass';
 import MyClasses from '../Pages/Dashboard/Instructors/MyClasses';
 import ManageClasses from '../Pages/Dashboard/Admin/ManageClasses';
 import ManageUsers from '../Pages/Dashboard/Admin/ManageUsers';
+import CheckoutForm from '../components/Shared/Forms/CheckoutForm';
+import Payment from '../components/Shared/Forms/Payment';
 
 const router = createBrowserRouter([
     {
@@ -81,12 +83,16 @@ const router = createBrowserRouter([
 
             // student
             {
-                path: '/dashboard/student-home',
+                path: 'student-home',
                 element: <StudentHome></StudentHome>
             },
             {
-                path: '/dashboard/selected-classes',
+                path: 'selected-classes',
                 element: <SelectedClasses></SelectedClasses>
+            },
+            {
+                path: 'payment',
+                element: <Payment></Payment>
             }
         ]
     }
