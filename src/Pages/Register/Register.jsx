@@ -26,6 +26,18 @@ const Register = () => {
             return setError('Password Did not match')
         }
 
+        if (password.length < 6) {
+            return setError('Password should be at least 6 characters long');
+        }
+
+        if (!/[A-Z]/.test(password)) {
+            return setError('Password should contain at least one capital letter');
+        }
+
+        if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+            return setError('Password should contain at least one special character');
+        }
+
         createUser(email, password)
             .then(result => {
                 const loggedUser = result.user;
