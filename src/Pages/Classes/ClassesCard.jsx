@@ -10,7 +10,7 @@ const ClassesCard = ({ singleClass }) => {
     const userRole = localStorage.getItem('user-role');
 
     const handleSelectClass = (selClass) => {
-        const selectClass = { ...selClass, studentEmail: user?.email }
+        const selectClass = { ...selClass, studentEmail: user?.email, mainClassId: singleClass._id }
         console.log(selectClass);
         if (!user) {
             return navigate('/login')

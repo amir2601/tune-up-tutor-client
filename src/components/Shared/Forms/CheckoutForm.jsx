@@ -3,7 +3,7 @@ import './CheckoutForm.css'
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 
-const CheckoutForm = ({ price }) => {
+const CheckoutForm = ({ singleClass }) => {
     const { user } = useContext(AuthContext)
     const stripe = useStripe();
     const elements = useElements();
@@ -11,13 +11,13 @@ const CheckoutForm = ({ price }) => {
     const [clientSecret, setClientSecret] = useState('')
 
     useEffect(() => {
-        if (price) {
+        if (singleClass.price) {
             fetch(`${import.meta.env.VITE_API_URL}create-payment-intent`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
                 },
-                body: JSON.stringify({ price: price })
+                body: JSON.stringify({ price: singleClass.price })
             })
                 .then(res => res.json())
                 .then(data => {
@@ -78,10 +78,27 @@ const CheckoutForm = ({ price }) => {
         if (paymentIntent.status === 'succeeded') {
             // save payment information to the server
             const paymentInfo = {
-                name: user?.displayName,
-                email: user?.email ,
+                classId: singleClass._id,
+                name: singleClass.className,
+                studentName: user.displayName,
+                email: user.email,
+                price: singleClass.price,
                 transactionId: paymentIntent.id,
                 date: new Date(),
+            };
+
+            const enrolledClass = {
+                classId: singleClass._id,
+                mainClassId: singleClass.mainClassId,
+                className: singleClass.className,
+                img: singleClass.img,
+                studentName: user.displayName,
+                studentEmail: user.email,
+                instructorName: singleClass.name,
+                instructorEmail: singleClass.email,
+                price: singleClass.price,
+                seats: singleClass.seats,
+                students: singleClass.students
             }
 
             fetch(`${import.meta.env.VITE_API_URL}booking-data`, {
@@ -89,7 +106,7 @@ const CheckoutForm = ({ price }) => {
                 headers: {
                     'content-type': 'application/json'
                 },
-                body: JSON.stringify(paymentInfo)
+                body: JSON.stringify({paymentInfo, enrolledClass})
             })
                 .then(res => res.json())
                 .then(data => {

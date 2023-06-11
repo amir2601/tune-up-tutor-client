@@ -11,7 +11,6 @@ const SelectedClasses = () => {
         fetch(`${import.meta.env.VITE_API_URL}select-class/${user?.email}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setClasses(data);
             })
     }, [reload])
