@@ -23,7 +23,7 @@ const Instructors = () => {
                     <li><a>Instructors</a></li>
                 </ul>
             </div>
-            <h2 className='text-3xl text-center font-semibold my-2'>Instructors</h2>
+            <h2 className='text-3xl text-center text-blue-400 font-semibold my-2'>Instructors</h2>
             <div className='grid md:grid-cols-3 gap-4 mx-auto my-4'>
                 {
                     instructors.map(instructor => <InstructorCard key={instructor._id} instructor={instructor}></InstructorCard>)

@@ -45,6 +45,7 @@ const ClassesCard = ({ singleClass }) => {
                     <h2 className="card-title">{singleClass.className}</h2>
                     <h2 className="text-lg"><span className='font-semibold'>Instructor Name:</span> {singleClass.name}</h2>
                     <p><span className='font-semibold'>Instructor Email:</span> {singleClass.email}</p>
+                    <p><span className='font-semibold'>Available Seats:</span> {singleClass.seats}</p>
                     <div className="card-actions justify-start">
                         <div className="badge badge-outline">Price</div>
                         <div className="badge badge-outline">$ {singleClass.price}</div>

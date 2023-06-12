@@ -8,6 +8,7 @@ const Footer = () => {
                 <div>
                     <img src="https://i.ibb.co/mv9V46x/logo.png" alt="logo" />
                     <p>Tune Up Tutor<br />Providing best tutor since 2010</p>
+                    <p>Address: Dhaka, Bangladesh</p>
                 </div>
                 <div>
                     <span className="footer-title">Social Links</span>

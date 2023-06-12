@@ -26,7 +26,7 @@ const Classes = () => {
                     <li><a>Classes</a></li>
                 </ul>
             </div>
-            <h2 className='text-3xl text-center font-semibold my-2'>Classes</h2>
+            <h2 className='text-3xl text-center text-blue-400 font-semibold my-2'>Classes</h2>
             <div className='grid md:grid-cols-3 gap-4 mx-auto my-4'>
                 {
                     classes.map(singleClass => <ClassesCard key={singleClass._id} singleClass={singleClass}></ClassesCard>)

@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import logo from '../../../assets/logo.png'
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 
-const Navbar = () => {
+const Navbar = ({ isDarkMode, onToggle }) => {
     const { user, logOut } = useContext(AuthContext);
     const [userRole, setUserRole] = useState(null)
     console.log(userRole);
@@ -33,18 +33,29 @@ const Navbar = () => {
         <li><NavLink to="/instructors">Instructors</NavLink></li>
         <li><NavLink to="/classes">Classes</NavLink></li>
         {
-            userRole === 'admin' && <li><NavLink to='/dashboard/admin-home'>Dashboard </NavLink></li>
+            user?.email && userRole === 'admin' && <li><NavLink to='/dashboard/admin-home'>Dashboard </NavLink></li>
         }
         {
-            userRole === 'instructor' && <li><NavLink to='/dashboard/instructor-home'>Dashboard </NavLink></li>
+            user?.email && userRole === 'instructor' && <li><NavLink to='/dashboard/instructor-home'>Dashboard </NavLink></li>
         }
         {
-            userRole === 'student' && <li><NavLink to='/dashboard/student-home'>Dashboard </NavLink></li>
+            user?.email && userRole === 'student' && <li><NavLink to='/dashboard/student-home'>Dashboard </NavLink></li>
         }
-        {
+        {/* {
             userRole === null && <li><Link to='/login'>Dashboard </Link></li>
-        }
-
+        } */}
+        <li>
+            <button
+                className="theme-toggle px-2 py-2 rounded-full ms-4"
+                onClick={onToggle}
+            >
+                {isDarkMode ? (
+                    <BsFillMoonStarsFill className="text-3xl text-black" />
+                ) : (
+                    <BsFillSunFill className="text-3xl " />
+                )}
+            </button>
+        </li>
     </>
 
     return (
@@ -61,7 +72,7 @@ const Navbar = () => {
                 <Link to="/"><img className='w-44 hidden md:flex' src="https://i.ibb.co/mv9V46x/logo.png" alt="logo" /></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal px-1 flex justify-center items-center">
                     {navItems}
                 </ul>
             </div>
