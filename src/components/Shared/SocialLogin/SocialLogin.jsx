@@ -42,9 +42,9 @@ const SocialLogin = () => {
                 <button onClick={handleGoogleLogin} className="btn btn-circle btn-accent btn-outline">
                     <FaGoogle></FaGoogle>
                 </button>
-                <button className="btn btn-circle btn-accent btn-outline">
+                {/* <button className="btn btn-circle btn-accent btn-outline">
                     <FaGithub></FaGithub>
-                </button>
+                </button> */}
             </div>
         </div>
     );

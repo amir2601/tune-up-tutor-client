@@ -5,7 +5,6 @@ import { AuthContext } from '../../../Provider/AuthProvider';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
-    // const userRole = localStorage.getItem('user-role');
     const [userRole, setUserRole] = useState(null)
     console.log(userRole);
 
@@ -33,7 +32,6 @@ const Navbar = () => {
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/instructors">Instructors</NavLink></li>
         <li><NavLink to="/classes">Classes</NavLink></li>
-        {/* <li><NavLink to={ userRole === 'admin' ? '/dashboard/admin-home' : '/dashboard/student-home'}>Dashboard </NavLink></li> */}
         {
             userRole === 'admin' && <li><NavLink to='/dashboard/admin-home'>Dashboard </NavLink></li>
         }
@@ -60,7 +58,7 @@ const Navbar = () => {
                         {navItems}
                     </ul>
                 </div>
-                <Link to="/"><img className='w-44 hidden md:flex' src={logo} alt="logo" /></Link>
+                <Link to="/"><img className='w-44 hidden md:flex' src="https://i.ibb.co/mv9V46x/logo.png" alt="logo" /></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import useTitle from '../../../Hooks/useTitle';
 
 const UpdateClass = () => {
+    useTitle('Update Class')
     const { user } = useContext(AuthContext);
-
-    
 
     const handleUpdateClass = event => {
         event.preventDefault();

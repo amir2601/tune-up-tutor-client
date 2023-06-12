@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import MyClassesCard from './MyClassesCard';
+import useTitle from '../../../Hooks/useTitle';
 
 const MyClasses = () => {
+    useTitle('My Classes')
     const { user } = useContext(AuthContext)
     const [classes, setClasses] = useState([])
 

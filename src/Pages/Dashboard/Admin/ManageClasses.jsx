@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import ManageClassesCard from './ManageClassesCard';
+import useTitle from '../../../Hooks/useTitle';
 
 const ManageClasses = () => {
+    useTitle('Manage Classes')
     const [reload, setReload] = useState(true)
     const [classes, setClasses] = useState([])
     console.log(reload);
