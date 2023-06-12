@@ -13,26 +13,26 @@ const Home = () => {
         <div className='space-y-10 my-5'>
             <Slider></Slider>
             <motion.div
-                initial={{ opacity: 0, y: -50 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 5 }}
             >
                 <PopularInstructor></PopularInstructor>
             </motion.div>
             <motion.div
-                initial={{ opacity: 0, y: -50 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 5 }}
             >
                 <PopularClasses></PopularClasses>
             </motion.div>
             <motion.div
-                initial={{ opacity: 0, y: -50 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 5 }}
             >
                 <Faq></Faq>
             </motion.div>
-            {/* <PopularInstructor></PopularInstructor> */}
-            {/* <PopularClasses></PopularClasses> */}
-            {/* <Faq></Faq> */}
         </div>
     );
 };
