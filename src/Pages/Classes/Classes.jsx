@@ -20,7 +20,7 @@ const Classes = () => {
 
     return (
         <div>
-            <div className="text-sm breadcrumbs mx-auto bg-slate-300 rounded-xl w-1/6 flex justify-center">
+            <div className="text-sm breadcrumbs mx-auto bg-slate-300 rounded-xl w-1/6 justify-center hidden md:flex">
                 <ul>
                     <li><a>Home</a></li>
                     <li><a>Classes</a></li>
