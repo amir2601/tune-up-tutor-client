@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import useTitle from '../../../Hooks/useTitle';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const UpdateClass = () => {
-    useTitle('Update Class')
+    useTitle('Update Class');
+    const navigate = useNavigate()
     const { user } = useContext(AuthContext);
+    const classInfo = useLoaderData()
 
     const handleUpdateClass = event => {
         event.preventDefault();
@@ -14,30 +18,34 @@ const UpdateClass = () => {
         const email = form.email.value;
         const seats = form.seats.value;
         const price = form.price.value;
-        const img = form.img.value;
 
-        const newClass = {
+        const updateClass = {
             className,
-            name,
-            email,
             seats,
-            price,
-            img,
-            students: 0,
-            status: 'pending',
+            price
         }
-        console.log(newClass);
+        console.log(updateClass);
 
-        fetch(`${import.meta.env.VITE_API_URL}add-class`, {
-            method: 'POST',
+        fetch(`${import.meta.env.VITE_API_URL}update-classes/${classInfo._id}`, {
+            method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(newClass)
+            body: JSON.stringify(updateClass)
         })
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                if (data.modifiedCount > 0) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Your class has been updated',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                      navigate('/dashboard/my-class')
+                }
             })
 
     }
@@ -45,7 +53,7 @@ const UpdateClass = () => {
     return (
         <div className='w-full'>
             <div className="card-body">
-                <h1 className="text-4xl font-bold text-center">Add Class</h1>
+                <h1 className="text-4xl font-bold text-center">Update Class</h1>
                 <hr className='border-2 border-accent' />
                 <form onSubmit={handleUpdateClass}>
                     <div className='grid md:grid-cols-2 gap-4'>
@@ -53,7 +61,7 @@ const UpdateClass = () => {
                             <label className="label">
                                 <span className="label-text">Class Name</span>
                             </label>
-                            <input type="text" name='className' placeholder="Class Name" className="input input-bordered" required />
+                            <input type="text" name='className' placeholder="Class Name" className="input input-bordered" defaultValue={classInfo.className} required />
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -71,24 +79,17 @@ const UpdateClass = () => {
                             <label className="label">
                                 <span className="label-text">Available Seats</span>
                             </label>
-                            <input type="number" name='seats' placeholder="Available Seats" className="input input-bordered" required />
+                            <input type="number" name='seats' placeholder="Available Seats" className="input input-bordered" defaultValue={classInfo.seats} required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Price</span>
                             </label>
-                            <input type="number" name='price' placeholder="Price" className="input input-bordered" required />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Class Image</span>
-                            </label>
-                            <input type="url" name='img' placeholder="Class Image" className="input input-bordered" required />
+                            <input type="number" name='price' placeholder="Price" className="input input-bordered" defaultValue={classInfo.price} required />
                         </div>
                     </div>
-                    <input className='btn btn-accent btn-outline mt-4 w-full' type="submit" value="Add Class" />
+                    <input className='btn btn-accent btn-outline mt-4 w-full' type="submit" value="Update Class" />
                 </form>
-                {/* <button className='btn btn-accent btn-outline mt-4'>Add Class</button> */}
             </div>
         </div>
     );

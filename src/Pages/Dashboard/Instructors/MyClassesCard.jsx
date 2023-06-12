@@ -37,7 +37,7 @@ const MyClassesCard = ({ singleClass, index }) => {
                 <Link onClick={handleFeedback} className={singleClass.status === 'deny' ? "btn btn-outline btn-xs" : 'hidden'}>See Feedback</Link>
             </td>
             <td>
-                <Link className="btn btn-outline btn-xs">Update</Link>
+                <Link to={`/dashboard/update-class/${singleClass._id}`} className="btn btn-outline btn-xs">Update</Link>
             </td>
         </tr>
     );

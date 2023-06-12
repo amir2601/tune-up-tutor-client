@@ -21,6 +21,7 @@ import CheckoutForm from '../components/Shared/Forms/CheckoutForm';
 import Payment from '../components/Shared/Forms/Payment';
 import EnrolledClass from '../Pages/Dashboard/Student/EnrolledClass';
 import PaymentHistory from '../Pages/Dashboard/Student/PaymentHistory';
+import UpdateClass from '../Pages/Dashboard/Instructors/UpdateClass';
 
 const router = createBrowserRouter([
     {
@@ -81,6 +82,11 @@ const router = createBrowserRouter([
             {
                 path: 'my-class',
                 element: <MyClasses></MyClasses>
+            },
+            {
+                path: 'update-class/:id',
+                element: <UpdateClass></UpdateClass>,
+                loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}update-classes/${params.id}`)
             },
 
             // student
