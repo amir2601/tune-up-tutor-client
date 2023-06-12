@@ -14,7 +14,7 @@ const Main = () => {
     return (
         <div className={`home-page ${isDarkMode ? "dark" : "light"}`}>
             <Navbar isDarkMode={isDarkMode} onToggle={handleThemeToggle} ></Navbar>
-            <div className='min-h-[calc(100vh-352px)] px-4'>
+            <div className='min-h-[calc(100vh-352px)] md:px-4 my-4'>
                 <Outlet></Outlet>
             </div>
             <Footer></Footer>

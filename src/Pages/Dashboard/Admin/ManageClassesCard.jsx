@@ -76,10 +76,10 @@ const ManageClassesCard = ({ singleClass, index, setReload }) => {
             <td className='text-end'>{singleClass.price}</td>
             <td>{singleClass.status}</td>
             <td>
-                <button onClick={() => handleUpdateStatus('approved', singleClass._id)} disabled={singleClass?.status === 'approved'} className="btn btn-outline btn-success btn-xs">Approve</button>
+                <button onClick={() => handleUpdateStatus('approved', singleClass._id)} disabled={singleClass?.status === 'approved' || singleClass?.status === 'deny'} className="btn btn-outline btn-success btn-xs">Approve</button>
             </td>
             <td>
-                <button onClick={() => handleUpdateStatus('deny', singleClass._id)} disabled={singleClass?.status === 'deny'} className="btn btn-outline btn-error btn-xs">Deny</button>
+                <button onClick={() => handleUpdateStatus('deny', singleClass._id)} disabled={singleClass?.status === 'deny' || singleClass?.status === 'approved'} className="btn btn-outline btn-error btn-xs">Deny</button>
             </td>
             <td>
                 <button onClick={() => handleFeedback(singleClass._id)} className="btn btn-outline btn-xs">Feedback</button>

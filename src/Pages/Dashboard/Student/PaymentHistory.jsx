@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import useTitle from '../../../Hooks/useTitle';
+import moment from 'moment';
 
 const PaymentHistory = () => {
     useTitle('Payments History')
@@ -11,7 +12,12 @@ const PaymentHistory = () => {
         fetch(`${import.meta.env.VITE_API_URL}payment-history/${user?.email}`)
             .then(res => res.json())
             .then(data => {
-                setHistory(data);
+                const formattedData = data.map(info => ({
+                    ...info,
+                    date: moment(info.date).format('DD MMMM YYYY')
+                }));
+
+                setHistory(formattedData);
             })
     }, [])
 

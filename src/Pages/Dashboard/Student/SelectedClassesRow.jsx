@@ -55,10 +55,10 @@ const SelectedClassesRow = ({ singleClass, index, setReload }) => {
             </td>
             <td>{singleClass.price}</td>
             <td>
-                <Link onClick={() => handleDeleteClass(singleClass._id)} className="btn btn-ghost btn-xs">Delete</Link>
+                <Link onClick={() => handleDeleteClass(singleClass._id)} className="btn btn-outline btn-xs">Delete</Link>
             </td>
             <td>
-                <Link to={`/dashboard/payment/${singleClass._id}`} className="btn btn-ghost btn-xs" onClick={() => handlePaymentModal(singleClass._id)}>Pay</Link>
+                <Link to={`/dashboard/payment/${singleClass._id}`} className="btn btn-outline btn-xs" onClick={() => handlePaymentModal(singleClass._id)}>Pay</Link>
             </td>
         </tr>
     );

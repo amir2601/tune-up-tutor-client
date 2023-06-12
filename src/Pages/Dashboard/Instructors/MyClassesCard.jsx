@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const MyClassesCard = ({ singleClass, index }) => {
-    const [classes, setClasses] = useState('')
 
     const handleFeedback = () => {
         Swal.fire('Admin Feedback', singleClass.feedback)
-
     }
 
     return (
@@ -36,10 +34,10 @@ const MyClassesCard = ({ singleClass, index }) => {
             </td>
             <td className='text-center'>{singleClass.students}</td>
             <td>
-                <Link onClick={handleFeedback} className="btn btn-ghost btn-xs">Feedback</Link>
+                <Link onClick={handleFeedback} className={singleClass.status === 'deny' ? "btn btn-outline btn-xs" : 'hidden'}>See Feedback</Link>
             </td>
             <td>
-                <Link className="btn btn-ghost btn-xs">Update</Link>
+                <Link className="btn btn-outline btn-xs">Update</Link>
             </td>
         </tr>
     );
