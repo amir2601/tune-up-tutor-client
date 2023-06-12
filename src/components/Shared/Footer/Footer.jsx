@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFacebookF,FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import { FaFacebookF,FaGithub,FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 const Footer = () => {
     return (
@@ -17,6 +17,7 @@ const Footer = () => {
                             <a href="https://www.facebook.com/riad.vai.2601" target='_blank'><FaFacebookF></FaFacebookF></a>
                             <a href="https://www.instagram.com/amir_hossin_.riad/" target='_blank'><FaInstagram></FaInstagram></a>
                             <a href="https://www.linkedin.com/in/amir-hossin-riad/" target='_blank'><FaLinkedinIn></FaLinkedinIn></a>
+                            <a href="https://github.com/amir2601" target='_blank'><FaGithub></FaGithub></a>
                         </div>
                     </div>
                 </div>
