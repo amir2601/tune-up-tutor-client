@@ -39,7 +39,7 @@ const ClassesCard = ({ singleClass }) => {
 
     return (
         <div>
-            <div className={singleClass.seats === 0 ? 'card card-compact w-full bg-red-500 text-white shadow-xl' : 'card card-compact w-full bg-base-100 shadow-xl'}>
+            <div className={singleClass.seats === 0 ? 'card card-compact w-full bg-red-500 text-white shadow-xl' : 'card card-compact w-full bg-base-100 dark:shadow-md dark:shadow-white shadow-md shadow-black hover:scale-95 duration-300'}>
                 <figure><img src={singleClass.img} alt="Shoes" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{singleClass.className}</h2>

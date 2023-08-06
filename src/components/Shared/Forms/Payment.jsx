@@ -11,7 +11,7 @@ const Payment = () => {
     console.log(singleClass);
 
     return (
-        <div className='w-3/6 mx-auto'>
+        <div className='w-full px-4 md:px-0 md:w-3/6 mx-auto'>
             <h2 className='text-3xl font-semibold text-center my-5'>Payment Page</h2>
 
             <div className="mockup-window border bg-base-300 p-5">

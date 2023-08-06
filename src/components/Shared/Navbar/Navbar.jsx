@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 
-const Navbar = ({ isDarkMode, onToggle }) => {
+const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
     const [userRole, setUserRole] = useState(null)
     console.log(userRole);
@@ -41,25 +41,10 @@ const Navbar = ({ isDarkMode, onToggle }) => {
         {
             user?.email && userRole === 'student' && <li><NavLink to='/dashboard/student-home'>Dashboard </NavLink></li>
         }
-        {/* {
-            userRole === null && <li><Link to='/login'>Dashboard </Link></li>
-        } */}
-        <li>
-            <button
-                className="theme-toggle px-2 py-2 rounded-full ms-4"
-                onClick={onToggle}
-            >
-                {isDarkMode ? (
-                    <BsFillMoonStarsFill className="text-3xl text-black" />
-                ) : (
-                    <BsFillSunFill className="text-3xl " />
-                )}
-            </button>
-        </li>
     </>
 
     return (
-        <div className="navbar bg-white">
+        <div className="navbar bg-base">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">

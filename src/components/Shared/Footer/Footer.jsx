@@ -4,7 +4,7 @@ import { FaFacebookF,FaGithub,FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 const Footer = () => {
     return (
         <div>
-            <footer className="footer p-10 bg-base-300 text-base-content rounded-t-lg">
+            <footer className="footer p-10 bg-gray-200 text-black rounded-t-lg">
                 <div>
                     <img src="https://i.ibb.co/mv9V46x/logo.png" alt="logo" />
                     <p>Tune Up Tutor<br />Providing best tutor since 2010</p>
