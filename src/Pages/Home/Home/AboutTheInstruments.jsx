@@ -1,13 +1,13 @@
 import React from 'react';
 
-const AboutTheSite = () => {
+const AboutTheInstruments = () => {
     return (
-        <div className='my-20'>
+        <div className='my-20 px-4 md:px-0'>
             <p className='italic text-purple-400'>Dedication to Teaching</p>
             <h1 className='text-3xl md:text-5xl font-semibold my-6'>ABOUT THE <span className='text-purple-400'>INSTRUMENTS</span></h1>
             <p>Unlock your musical journey with expert guidance</p>
 
-            <div className='grid grid-cols-2 md:grid-cols-4 gap-4 mt-16'>
+            <div className='grid md:grid-cols-4 gap-4 mt-16'>
                 <div className='p-4'>
                     <img src="https://i.ibb.co/K6Q3XHd/guitar.png" alt="" />
                     <h3 className='text-2xl mt-4 mb-2 text-purple-400'>Guitar</h3>
@@ -33,4 +33,4 @@ const AboutTheSite = () => {
     );
 };
 
-export default AboutTheSite;
+export default AboutTheInstruments;
