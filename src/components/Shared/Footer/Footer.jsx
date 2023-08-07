@@ -6,7 +6,7 @@ const Footer = () => {
         <div>
             <footer className="footer p-10 bg-gray-200 text-black rounded-t-lg">
                 <div>
-                    <img src="https://i.ibb.co/mv9V46x/logo.png" alt="logo" />
+                    <img src="https://i.ibb.co/s2KrMhF/logo.png" alt="logo" />
                     <p>Tune Up Tutor<br />Providing best tutor since 2010</p>
                     <p>Address: Dhaka, Bangladesh</p>
                 </div>

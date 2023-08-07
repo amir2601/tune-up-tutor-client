@@ -54,7 +54,7 @@ const Navbar = () => {
                         {navItems}
                     </ul>
                 </div>
-                <Link to="/"><img className='w-44 hidden md:flex' src="https://i.ibb.co/mv9V46x/logo.png" alt="logo" /></Link>
+                <Link to="/"><img className='w-44 hidden md:flex' src="https://i.ibb.co/s2KrMhF/logo.png" alt="logo" /></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 flex justify-center items-center">
