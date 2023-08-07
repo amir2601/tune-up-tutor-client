@@ -5,6 +5,7 @@ import PopularInstructor from './PopulerInstructor';
 import PopularClasses from './PopularClasses';
 import Faq from './Faq';
 import { motion } from "framer-motion"
+import ArtOfMusic from './AboutMusic';
 
 const Home = () => {
     useTitle('Home');
@@ -31,6 +32,7 @@ const Home = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 5 }}
             >
+                <ArtOfMusic></ArtOfMusic>
                 <Faq></Faq>
             </motion.div>
         </div>
