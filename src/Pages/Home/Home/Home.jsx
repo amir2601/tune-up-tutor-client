@@ -5,7 +5,8 @@ import PopularInstructor from './PopulerInstructor';
 import PopularClasses from './PopularClasses';
 import Faq from './Faq';
 import { motion } from "framer-motion"
-import ArtOfMusic from './AboutMusic';
+import ArtOfMusic from './ArtOfMusic';
+import AboutTheSite from './AboutTheSite';
 
 const Home = () => {
     useTitle('Home');
@@ -33,6 +34,7 @@ const Home = () => {
                 transition={{ duration: 5 }}
             >
                 <ArtOfMusic></ArtOfMusic>
+                <AboutTheSite></AboutTheSite>
                 <Faq></Faq>
             </motion.div>
         </div>

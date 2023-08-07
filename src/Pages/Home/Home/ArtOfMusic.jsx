@@ -2,7 +2,7 @@ import React from 'react';
 
 const ArtOfMusic = () => {
     return (
-        <div className='grid md:grid-cols-2 gap-4 px-4 md:px-0'>
+        <div className='grid md:grid-cols-2 gap-4 px-4 md:px-0 my-20'>
             <div className='flex items-center'>
                 <div>
                     <h1 className='md:text-5xl text-3xl text-center md:text-left font-semibold'>ART OF <span className='text-purple-400'>MUSIC</span> </h1>
