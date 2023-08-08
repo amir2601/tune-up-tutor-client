@@ -14,7 +14,7 @@ const PopularInstructor = () => {
 
     return (
         <div className='px-4 md:px-0'>
-            <h2 className='text-3xl text-center text-blue-400 font-semibold my-4'>Popular Instructors</h2>
+            <h2 className='text-3xl text-center font-semibold my-4'>Popular <span className='text-purple-400'>Instructors</span></h2>
             <hr />
             <div className='grid md:grid-cols-3 gap-4 mx-auto my-4'>
                 {

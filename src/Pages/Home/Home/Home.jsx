@@ -8,6 +8,7 @@ import { motion } from "framer-motion"
 import ArtOfMusic from './ArtOfMusic';
 import AboutTheInstruments from './AboutTheInstruments';
 import Testimonials from './Testimonials';
+import Partners from './Partners';
 
 const Home = () => {
     useTitle('Home');
@@ -37,6 +38,7 @@ const Home = () => {
                 <ArtOfMusic></ArtOfMusic>
                 <AboutTheInstruments></AboutTheInstruments>
                 <Testimonials></Testimonials>
+                <Partners></Partners>
                 <Faq></Faq>
             </motion.div>
         </div>
