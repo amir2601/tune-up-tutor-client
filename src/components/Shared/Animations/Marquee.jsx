@@ -26,7 +26,7 @@ const Marquee = ({
     );
 
     return (
-        <div className={`group relative flex overflow-hidden ${fade ? 'marquee-mask' : ''} ${className}`}>
+        <div className={`group relative flex overflow-hidden py-8 ${fade ? 'marquee-mask' : ''} ${className}`}>
             <div
                 className={`will-move flex w-max ${animClass} ${speedClass} ${
                     pauseOnHover ? 'group-hover:[animation-play-state:paused]' : ''

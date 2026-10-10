@@ -52,7 +52,7 @@ const Testimonials = () => {
                 </Reveal>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-0">
                 <Marquee speed="slow">
                     {topRow.map(t => <Card key={t.name} t={t} />)}
                 </Marquee>
