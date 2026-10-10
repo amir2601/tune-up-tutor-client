@@ -43,7 +43,7 @@ const Login = () => {
                     <span className='grid h-10 w-10 place-items-center rounded-2xl bg-white/15 backdrop-blur'>
                         <FaMusic className='text-lg' />
                     </span>
-                    <span className='text-lg font-extrabold tracking-tight'>Tune<span className='text-white/80'>Up</span></span>
+                    <span className='text-lg font-extrabold tracking-tight'>Tune Up <span className='text-white/80'>Tutor</span></span>
                 </div>
 
                 <div className='relative z-10 space-y-5'>
@@ -69,7 +69,7 @@ const Login = () => {
                             <span className='grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br from-primary to-secondary text-white'>
                                 <FaMusic className='text-lg' />
                             </span>
-                            <span className='text-lg font-extrabold tracking-tight'>Tune<span className='text-primary'>Up</span></span>
+                            <span className='text-lg font-extrabold tracking-tight'>Tune Up <span className='text-primary'>Tutor</span></span>
                         </div>
                         <h1 className="text-3xl font-extrabold tracking-tight">Login</h1>
                         <p className='text-sm text-base-content/60'>Enter your credentials to access your account.</p>

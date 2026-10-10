@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>Tune-Up Tutor (Client)</h1>
+  <h1>Tune Up Tutor (Client)</h1>
   <p>
     A modern, premium music academy learning platform — <strong>React + Vite</strong>, Firebase Auth, Stripe payments, and a sleek animated UI with dark/light mode.
   </p>

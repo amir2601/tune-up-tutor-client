@@ -15,7 +15,7 @@ const ArtOfMusic = () => {
     return (
         <section className="grid items-center gap-12 px-4 md:px-0 lg:grid-cols-2">
             <Reveal direction="left" className="space-y-6">
-                <span className="eyebrow">Why TuneUp</span>
+                <span className="eyebrow">Why Tune Up Tutor</span>
                 <h2 className="section-heading">The Art of <span className="text-gradient">Music</span></h2>
                 <p className="leading-relaxed text-base-content/70">
                     Music is the universal language that transcends barriers and connects hearts — a profound

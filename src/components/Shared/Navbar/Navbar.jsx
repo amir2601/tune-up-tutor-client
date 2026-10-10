@@ -106,7 +106,7 @@ const Navbar = () => {
                         </span>
                         <span className="flex flex-col leading-none">
                             <span className="text-lg font-extrabold tracking-tight">
-                                Tune<span className="text-primary">Up</span>
+                                Tune Up <span className="text-primary">Tutor</span>
                             </span>
                             <span className="hidden text-[10px] font-semibold uppercase tracking-[0.22em] text-base-content/40 sm:block">
                                 Music Academy

@@ -71,7 +71,7 @@ const Footer = () => {
                             <FaMusic className="text-lg" />
                         </span>
                         <span className="text-lg font-extrabold tracking-tight text-white">
-                            Tune<span className="text-primary">Up</span>
+                            Tune Up <span className="text-primary">Tutor</span>
                         </span>
                     </Link>
                     <p className="max-w-xs text-sm leading-relaxed text-neutral-content/70">

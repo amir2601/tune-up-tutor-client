@@ -35,7 +35,7 @@ const Gallery = () => {
         <section id="gallery" className="scroll-mt-24 px-4 md:px-0">
             <div className="mx-auto mb-12 max-w-2xl space-y-3 text-center">
                 <span className="eyebrow mx-auto">Inside the academy</span>
-                <h2 className="section-heading">The TuneUp <span className="text-gradient">Gallery</span></h2>
+                <h2 className="section-heading">The Tune Up Tutor <span className="text-gradient">Gallery</span></h2>
                 <p className="text-base-content/60">A glimpse into our studios, stages and the moments that make music magic.</p>
             </div>
 

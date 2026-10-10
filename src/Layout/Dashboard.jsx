@@ -81,7 +81,7 @@ const Dashboard = () => {
                             <FaMusic className="text-lg" />
                         </span>
                         <span className="text-lg font-extrabold tracking-tight text-white">
-                            Tune<span className="text-primary">Up</span>
+                            Tune Up <span className="text-primary">Tutor</span>
                         </span>
                     </Link>
 
@@ -134,7 +134,7 @@ const Dashboard = () => {
                             <FaSignOutAlt /> Log Out
                         </button>
                         <p className="mt-3 flex items-center gap-2 px-4 text-[11px] text-neutral-content/40">
-                            <FaUserCircle /> TuneUp Tutor
+                            <FaUserCircle /> Tune Up Tutor
                         </p>
                     </div>
                 </aside>

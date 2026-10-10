@@ -40,7 +40,7 @@ const slides = [
         pre: 'Let the music',
         hi: 'guide your soul',
         post: 'every single day',
-        text: 'Join thousands of learners discovering their unique sound with TuneUp Tutor.',
+        text: 'Join thousands of learners discovering their unique sound with Tune Up Tutor.',
     },
 ];
 
