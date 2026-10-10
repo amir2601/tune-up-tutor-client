@@ -12,7 +12,7 @@ const stats = [
 
 const Stats = () => {
     return (
-        <Stagger className="grid grid-cols-1 gap-4 px-4 sm:grid-cols-2 md:px-0 lg:grid-cols-4" stagger={0.12}>
+        <Stagger className="grid grid-cols-1 gap-4 px-4 sm:px-6 lg:px-8 sm:grid-cols-2 lg:grid-cols-4" stagger={0.12}>
             {stats.map(stat => (
                 <StaggerItem
                     key={stat.label}

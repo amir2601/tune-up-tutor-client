@@ -35,7 +35,7 @@ const Faq = () => {
     const toggle = (index) => setOpen(prev => (prev === index ? -1 : index));
 
     return (
-        <section className="my-8 px-4 md:px-0">
+        <section className="my-8 px-4 sm:px-6 lg:px-8">
             <div className="mx-auto mb-12 max-w-2xl space-y-3 text-center">
                 <span className="eyebrow mx-auto">Need help?</span>
                 <h2 className="section-heading">Frequently Asked <span className="text-gradient">Questions</span></h2>

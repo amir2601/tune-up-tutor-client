@@ -125,7 +125,7 @@ const Footer = () => {
 
             <div className="relative border-t border-white/10">
                 <div className="page-shell flex flex-col items-center justify-between gap-2 py-5 text-center text-xs text-neutral-content/60 sm:flex-row sm:text-left">
-                    <p>Copyright © 2023 - All rights reserved by Tune Up Tutor</p>
+                    <p>Copyright © {new Date().getFullYear()} - All rights reserved by Tune Up Tutor</p>
                     <p className="flex items-center gap-1.5">
                         Crafted with a passion for music <FaMusic className="text-primary animate-wave" />
                     </p>

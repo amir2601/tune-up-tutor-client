@@ -30,7 +30,7 @@ const instruments = [
 
 const AboutTheInstruments = () => {
     return (
-        <section className="px-4 md:px-0">
+        <section className="px-4 sm:px-6 lg:px-8">
             <Reveal className="mx-auto max-w-2xl space-y-3 text-center">
                 <span className="eyebrow mx-auto">Dedication to Teaching</span>
                 <h2 className="section-heading">About the <span className="text-gradient">Instruments</span></h2>

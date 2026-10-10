@@ -76,7 +76,7 @@ const Slider = () => {
     const slide = slides[index];
 
     return (
-        <section className="px-4 md:px-0">
+        <section className="px-4 sm:px-6 lg:px-8">
             <div
                 className="group relative h-[80vh] max-h-[820px] min-h-[520px] w-full overflow-hidden rounded-4xl shadow-glow-lg sm:min-h-[600px]"
                 onMouseEnter={() => setPaused(true)}

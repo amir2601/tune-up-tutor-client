@@ -45,7 +45,7 @@ const Classes = () => {
     return (
         <div className="mx-auto max-w-7xl">
             {/* Header band */}
-            <section className="relative mx-4 mb-10 overflow-hidden rounded-4xl bg-gradient-to-br from-neutral via-slate-800 to-primary px-6 py-12 text-white sm:px-12 sm:py-16 md:mx-0">
+            <section className="relative mx-4 sm:mx-6 lg:mx-8 mb-10 overflow-hidden rounded-4xl bg-gradient-to-br from-neutral via-slate-800 to-primary px-6 py-12 text-white sm:px-12 sm:py-16">
                 <div className="pointer-events-none absolute inset-0 bg-grid opacity-[0.15]" />
                 <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-primary/40 blur-3xl" />
                 <div className="pointer-events-none absolute -bottom-20 left-10 h-52 w-52 rounded-full bg-accent/25 blur-3xl" />
@@ -66,7 +66,7 @@ const Classes = () => {
             </section>
 
             {/* Search + count */}
-            <Reveal className="mb-8 flex flex-col items-center justify-between gap-4 px-4 sm:flex-row md:px-0">
+            <Reveal className="mb-8 flex flex-col items-center justify-between gap-4 px-4 sm:px-6 sm:flex-row lg:px-8">
                 <label className="input input-bordered flex w-full items-center gap-3 rounded-full bg-base-100 sm:max-w-md">
                     <FaSearch className="text-base-content/40" />
                     <input
@@ -87,7 +87,7 @@ const Classes = () => {
                 </p>
             </Reveal>
 
-            <div className="grid gap-6 px-4 sm:grid-cols-2 md:px-0 lg:grid-cols-3">
+            <div className="grid gap-6 px-4 sm:px-6 lg:px-8 sm:grid-cols-2 lg:grid-cols-3">
                 {loading ? (
                     [0, 1, 2, 3, 4, 5].map(i => <Skeleton key={i} />)
                 ) : filtered.length ? (

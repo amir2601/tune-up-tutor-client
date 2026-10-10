@@ -15,7 +15,7 @@ const Main = () => {
             <ScrollProgress />
             <ScrollToTop />
             <Navbar />
-            <main className='min-h-[calc(100vh-352px)] flex-1 py-6 md:px-4'>
+            <main className='min-h-[calc(100vh-352px)] flex-1 py-6'>
                 {/* Keyed by pathname so every route change plays a fresh entrance */}
                 <motion.div
                     key={location.pathname}

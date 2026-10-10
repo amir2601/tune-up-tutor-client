@@ -80,7 +80,7 @@ const Register = () => {
     }
 
     return (
-        <div className='mx-auto my-6 grid w-[calc(100%-2rem)] max-w-6xl overflow-hidden rounded-4xl bg-base-100 shadow-glow sm:w-[calc(100%-4rem)] lg:w-full lg:grid-cols-2'>
+        <div className='mx-auto my-6 grid w-[calc(100%-2rem)] max-w-6xl overflow-hidden rounded-4xl bg-base-100 shadow-glow sm:w-[calc(100%-3rem)] lg:w-[calc(100%-4rem)] lg:grid-cols-2'>
             {/* Form panel */}
             <div className='order-2 p-6 sm:p-10 lg:order-1'>
                 <div className='mx-auto max-w-md space-y-6'>

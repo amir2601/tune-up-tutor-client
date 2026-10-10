@@ -18,7 +18,7 @@ const Logo = ({ partner }) => (
 
 const Partners = () => {
     return (
-        <section className="space-y-10 px-4 md:px-0">
+        <section className="space-y-10 px-4 sm:px-6 lg:px-8">
             <Stagger className="mx-auto max-w-2xl space-y-3 text-center">
                 <StaggerItem direction="none"><span className="eyebrow mx-auto">Trusted by</span></StaggerItem>
                 <StaggerItem direction="none">

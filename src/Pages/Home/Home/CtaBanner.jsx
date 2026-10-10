@@ -14,7 +14,7 @@ const notes = [
 
 const CtaBanner = () => {
     return (
-        <section className="px-4 md:px-0">
+        <section className="px-4 sm:px-6 lg:px-8">
             <Reveal direction="up">
                 <div className="relative overflow-hidden rounded-5xl bg-gradient-to-br from-primary via-brand-600 to-secondary px-6 py-16 text-center text-white shadow-glow-lg sm:px-12 sm:py-20">
                     <div className="pointer-events-none absolute inset-0 bg-dots opacity-20" />

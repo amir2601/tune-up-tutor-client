@@ -38,7 +38,7 @@ const Testimonials = () => {
     const bottomRow = testimonials.slice(4);
 
     return (
-        <section className="px-4 md:px-0">
+        <section className="px-4 sm:px-6 lg:px-8">
             <div className="mx-auto mb-12 max-w-2xl space-y-3 text-center">
                 <span className="eyebrow mx-auto">Loved by learners</span>
                 <h2 className="section-heading">What Our <span className="text-gradient">Students Say</span></h2>

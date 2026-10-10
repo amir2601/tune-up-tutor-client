@@ -107,7 +107,7 @@ const Pricing = () => {
     };
 
     return (
-        <section id="pricing" className="scroll-mt-24 px-4 md:px-0">
+        <section id="pricing" className="scroll-mt-24 px-4 sm:px-6 lg:px-8">
             <div className="mx-auto mb-10 max-w-2xl space-y-3 text-center">
                 <span className="eyebrow mx-auto">Top courses</span>
                 <h2 className="section-heading">Simple, Transparent <span className="text-gradient">Pricing</span></h2>

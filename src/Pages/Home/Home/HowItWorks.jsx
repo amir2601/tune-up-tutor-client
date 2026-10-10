@@ -26,7 +26,7 @@ const steps = [
 
 const HowItWorks = () => {
     return (
-        <section className="relative px-4 md:px-0">
+        <section className="relative px-4 sm:px-6 lg:px-8">
             <div className="mx-auto mb-14 max-w-2xl space-y-3 text-center">
                 <span className="eyebrow mx-auto">Simple &amp; fast</span>
                 <h2 className="section-heading">How It <span className="text-gradient">Works</span></h2>

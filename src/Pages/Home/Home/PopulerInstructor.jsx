@@ -27,7 +27,7 @@ const PopularInstructor = () => {
     }, []);
 
     return (
-        <section className="px-4 md:px-0">
+        <section className="px-4 sm:px-6 lg:px-8">
             <Reveal className="mb-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
                 <div className="max-w-2xl space-y-3">
                     <span className="eyebrow">The Maestros</span>
