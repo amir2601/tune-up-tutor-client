@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaQuestionCircle } from 'react-icons/fa';
 import { Reveal } from '../../../components/Shared/Animations/Reveal';
 
@@ -30,6 +30,10 @@ const faqs = [
 ];
 
 const Faq = () => {
+    const [open, setOpen] = useState(0);
+
+    const toggle = (index) => setOpen(prev => (prev === index ? -1 : index));
+
     return (
         <section className="my-8 px-4 md:px-0">
             <div className="mx-auto mb-12 max-w-2xl space-y-3 text-center">
@@ -41,13 +45,21 @@ const Faq = () => {
             <div className="grid items-start gap-10 lg:grid-cols-2">
                 <Reveal direction="left" className="space-y-4">
                     {faqs.map((faq, i) => (
-                        <div key={faq.q} tabIndex={0} className="collapse collapse-plus surface bg-base-100 transition-shadow duration-300 focus:shadow-glow">
-                            <div className="collapse-title flex items-center gap-3 pr-10 text-base font-semibold sm:text-lg">
+                        <div
+                            key={faq.q}
+                            className={`collapse collapse-plus surface bg-base-100 transition-shadow duration-300 ${open === i ? 'collapse-open shadow-glow' : ''}`}
+                        >
+                            <button
+                                type="button"
+                                onClick={() => toggle(i)}
+                                aria-expanded={open === i}
+                                className="collapse-title flex w-full items-center gap-3 pr-10 text-left text-base font-semibold sm:text-lg"
+                            >
                                 <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-primary/10 text-xs font-extrabold text-primary">
                                     {i + 1}
                                 </span>
                                 {faq.q}
-                            </div>
+                            </button>
                             <div className="collapse-content">
                                 <p className="pl-10 text-sm leading-relaxed text-base-content/70">{faq.a}</p>
                             </div>

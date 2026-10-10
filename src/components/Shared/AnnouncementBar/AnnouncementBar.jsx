@@ -35,7 +35,7 @@ const AnnouncementBar = () => {
                     className="relative overflow-hidden bg-gradient-to-r from-primary via-brand-600 to-secondary text-white"
                 >
                     <div className="pointer-events-none absolute inset-0 bg-dots opacity-20" />
-                    <div className="relative mx-auto flex max-w-7xl items-center justify-center gap-2 px-10 py-2 text-center text-xs font-semibold sm:gap-3 sm:text-sm">
+                    <div className="relative mx-auto flex max-w-7xl items-center justify-center gap-2 px-6 py-2 text-center text-xs font-semibold sm:gap-3 sm:px-10 sm:text-sm">
                         <FaBullhorn className="hidden shrink-0 animate-wave sm:block" />
                         <p className="min-w-0 truncate">
                             🎉 New here? Get <span className="font-extrabold">20% off</span> your first month

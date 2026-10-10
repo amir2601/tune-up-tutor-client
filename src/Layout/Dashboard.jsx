@@ -46,13 +46,13 @@ const Dashboard = () => {
 
             <div className="drawer-content flex min-h-screen flex-col bg-base-200">
                 <header className="sticky top-0 z-30 flex items-center justify-between gap-3 border-b border-base-300/70 bg-base-100/80 px-4 py-3 backdrop-blur-lg lg:px-8">
-                    <div className="flex items-center gap-3">
+                    <div className="flex min-w-0 items-center gap-3">
                         <label htmlFor="my-drawer-2" className="btn btn-ghost btn-circle lg:hidden">
                             <FaBars className="text-lg" />
                         </label>
-                        <div className='leading-tight'>
-                            <p className='text-sm font-bold capitalize'>{userRole || 'Dashboard'} Dashboard</p>
-                            <p className='text-xs text-base-content/50'>Welcome back, {user?.displayName || 'Member'}</p>
+                        <div className='min-w-0 leading-tight'>
+                            <p className='truncate text-sm font-bold capitalize'>{userRole || 'Dashboard'} Dashboard</p>
+                            <p className='truncate text-xs text-base-content/50'>Welcome back, {user?.displayName || 'Member'}</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-2">

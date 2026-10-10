@@ -45,7 +45,7 @@ const Classes = () => {
     return (
         <div className="mx-auto max-w-7xl">
             {/* Header band */}
-            <section className="relative mb-10 overflow-hidden rounded-4xl bg-gradient-to-br from-neutral via-slate-800 to-primary px-6 py-12 text-white sm:px-12 sm:py-16">
+            <section className="relative mx-4 mb-10 overflow-hidden rounded-4xl bg-gradient-to-br from-neutral via-slate-800 to-primary px-6 py-12 text-white sm:px-12 sm:py-16 md:mx-0">
                 <div className="pointer-events-none absolute inset-0 bg-grid opacity-[0.15]" />
                 <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-primary/40 blur-3xl" />
                 <div className="pointer-events-none absolute -bottom-20 left-10 h-52 w-52 rounded-full bg-accent/25 blur-3xl" />

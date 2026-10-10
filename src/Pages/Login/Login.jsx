@@ -36,7 +36,7 @@ const Login = () => {
     }
 
     return (
-        <div className='mx-auto my-6 grid max-w-6xl overflow-hidden rounded-4xl bg-base-100 shadow-glow lg:grid-cols-2'>
+        <div className='mx-auto my-6 grid w-[calc(100%-2rem)] max-w-6xl overflow-hidden rounded-4xl bg-base-100 shadow-glow sm:w-[calc(100%-4rem)] lg:w-full lg:grid-cols-2'>
             {/* Brand panel */}
             <div className='relative hidden flex-col justify-between bg-gradient-to-br from-primary via-brand-600 to-secondary p-10 text-white lg:flex'>
                 <div className='relative z-10 flex items-center gap-2.5'>
