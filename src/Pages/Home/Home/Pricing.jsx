@@ -36,8 +36,8 @@ const Pricing = () => {
             .finally(() => setLoading(false));
     }, []);
 
-    // Mirrors the class-card flow: add to Selected Classes, then user pays in
-    // the dashboard via the Stripe checkout.
+    // Adds the course to Selected Classes, then goes straight to the Stripe
+    // checkout — enrolment only completes once the payment succeeds.
     const handleEnroll = (course) => {
         if (!user) {
             return navigate('/login');
@@ -57,12 +57,12 @@ const Pricing = () => {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
-                        title: 'Course Added to Selection',
-                        text: 'Head to your dashboard to complete payment.',
+                        title: 'Course Added',
+                        text: 'Complete the secure checkout to finish enrolling.',
                         showConfirmButton: false,
-                        timer: 1800,
+                        timer: 1500,
                     });
-                    navigate('/dashboard/selected-classes');
+                    navigate(`/dashboard/payment/${course._id}`);
                 }
             })
             .catch(error => console.log(error))
@@ -101,7 +101,7 @@ const Pricing = () => {
                     <span className="loading loading-spinner loading-sm" />
                 ) : (
                     <>
-                        Enroll Now
+                        Pay & Enroll
                         <FaArrowRight className="text-xs" />
                     </>
                 )}
