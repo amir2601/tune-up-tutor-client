@@ -13,55 +13,50 @@ const CheckoutForm = ({ singleClass }) => {
     const elements = useElements();
     const [cardError, setCardError] = useState('');
     const [clientSecret, setClientSecret] = useState('')
+    const [processing, setProcessing] = useState(false)
 
     useEffect(() => {
-        if (singleClass.price) {
-            fetch(`${import.meta.env.VITE_API_URL}create-payment-intent`, {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify({ price: singleClass.price })
+        if (!singleClass?.price) return;
+
+        let active = true;
+        fetch(`${import.meta.env.VITE_API_URL}create-payment-intent`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ price: singleClass.price })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (active) setClientSecret(data.clientSecret || '')
             })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data.clientSecret);
-                    setClientSecret(data.clientSecret)
-                })
-        }
-    }, [])
+            .catch(error => {
+                if (active) setCardError('We could not start the payment. Please try again.')
+                console.log(error)
+            })
+
+        return () => { active = false }
+    }, [singleClass?.price])
 
     const handleSubmit = async (event) => {
         // Block native form submission.
         event.preventDefault();
 
-        if (!stripe || !elements) {
-            // Stripe.js has not loaded yet. Make sure to disable
-            // form submission until Stripe.js has loaded.
+        if (!stripe || !elements || !clientSecret) {
+            // Stripe.js has not loaded yet, or the payment intent is still being
+            // created. Keep the button disabled until everything is ready.
             return;
         }
 
-        // Get a reference to a mounted CardElement. Elements knows how
-        // to find your CardElement because there can only ever be one of
-        // each type of element.
+        // Get a reference to the mounted CardElement.
         const card = elements.getElement(CardElement);
 
         if (card == null) {
             return;
         }
 
-        // Use your card Element with other Stripe.js APIs
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
-            type: 'card',
-            card,
-        });
-
-        if (error) {
-            console.log('[error]', error);
-            setCardError(error.message)
-        } else {
-            console.log('[PaymentMethod]', paymentMethod);
-        }
+        setProcessing(true)
+        setCardError('')
 
         const { paymentIntent, error: confirmError } =
             await stripe.confirmCardPayment(clientSecret, {
@@ -75,21 +70,13 @@ const CheckoutForm = ({ singleClass }) => {
             })
 
         if (confirmError) {
-            console.log(confirmError)
             setCardError(confirmError.message)
+            setProcessing(false)
+            return;
         }
 
-        if (paymentIntent.status === 'succeeded') {
+        if (paymentIntent && paymentIntent.status === 'succeeded') {
             // save payment information to the server
-
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Payment Successfully Done',
-                showConfirmButton: false,
-                timer: 1500
-            })
-
             const paymentInfo = {
                 classId: singleClass._id,
                 name: singleClass.className,
@@ -122,9 +109,24 @@ const CheckoutForm = ({ singleClass }) => {
                 body: JSON.stringify({ paymentInfo, enrolledClass })
             })
                 .then(res => res.json())
-                .then(data => {
-                    console.log(data);
+                .then(() => {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Payment Successfully Done',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    navigate('/dashboard/enrolled-classes')
                 })
+                .catch(error => {
+                    console.log(error)
+                    setCardError('Payment went through but we could not save your enrolment. Please contact support.')
+                })
+                .finally(() => setProcessing(false))
+        } else {
+            setCardError('Payment was not completed. Please try again.')
+            setProcessing(false)
         }
     };
 
@@ -146,10 +148,15 @@ const CheckoutForm = ({ singleClass }) => {
                     },
                 }}
             />
-            <button type="submit" disabled={!stripe} className='btn btn-primary w-full rounded-full gap-2 shadow-soft'>
-                <FaLock className='text-xs' /> Pay
+            <button
+                type="submit"
+                disabled={!stripe || !clientSecret || processing}
+                className='btn btn-primary w-full rounded-full gap-2 shadow-soft'
+            >
+                {processing
+                    ? <span className='loading loading-spinner loading-sm' />
+                    : <FaLock className='text-xs' />} Pay
             </button>
-            <br />
             {cardError && <p className='text-sm font-semibold text-red-500'>{cardError}</p>}
         </form>
     );

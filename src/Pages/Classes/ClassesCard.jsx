@@ -10,9 +10,10 @@ const ClassesCard = ({ singleClass }) => {
     const navigate = useNavigate();
     const [selecting, setSelecting] = useState(false);
     const userRole = localStorage.getItem('user-role');
-    const isFull = singleClass.seats === 0;
+    const seats = Number(singleClass.seats) || 0;
+    const isFull = seats <= 0;
     const isDisabled = isFull || userRole === 'admin' || userRole === 'instructor';
-    const seatsPct = Math.min(100, Math.round((singleClass.seats / 20) * 100));
+    const seatsPct = Math.min(100, Math.round((seats / 20) * 100));
 
     const handleSelectClass = (selClass) => {
         const selectClass = { ...selClass, studentEmail: user?.email, mainClassId: singleClass._id };

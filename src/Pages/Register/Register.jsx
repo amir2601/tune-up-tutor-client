@@ -43,38 +43,37 @@ const Register = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                console.log(result);
 
-                updateUserProfile(name, photo)
-                    .then(() => {
-                        const saveUser = { name: name, email: email, role: 'student', img: photo }
+                return updateUserProfile(name, photo).then(() => {
+                    const saveUser = { name: name, email: email, role: 'student', img: photo }
 
-                        form.reset();
-                        navigate('/')
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Sign Up Successfull',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-
-                        fetch(`${import.meta.env.VITE_API_URL}users`, {
-                            method: 'POST',
-                            headers: {
-                                'content-type': 'application/json'
-                            },
-                            body: JSON.stringify(saveUser)
-                        })
-                            .then(res => res.json())
-                            .then(data => {
-                                console.log(data);
-                            })
-                    })
-                    .catch(error => {
-                        console.log(error.message);
-                    })
+                    // Persist the user before navigating so the navbar/dashboard
+                    // can immediately resolve their role.
+                    return fetch(`${import.meta.env.VITE_API_URL}users`, {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(saveUser)
+                    }).then(res => res.json())
+                })
+            })
+            .then(() => {
+                try {
+                    localStorage.setItem('user-role', 'student')
+                } catch {
+                    /* ignore */
+                }
+                form.reset();
                 setError('')
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Sign Up Successfull',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                navigate('/')
             })
             .catch(error => {
                 console.log(error.message);

@@ -2,13 +2,32 @@ import React from 'react';
 import CheckoutForm from './CheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { FaUserTie, FaChair, FaLock } from 'react-icons/fa';
 
 const stripePromise = loadStripe(`${import.meta.env.VITE_SRIPE_PUBLIC_KEY}`);
 
 const Payment = () => {
     const singleClass = useLoaderData()
+
+    // The selected class is removed from the database once it is paid for, so
+    // revisiting this page (or opening a stale link) yields no data.
+    if (!singleClass || !singleClass.className) {
+        return (
+            <div className='mx-auto w-full max-w-xl px-4 text-center'>
+                <div className='surface space-y-4 bg-base-100 p-10'>
+                    <span className='text-5xl'>✅</span>
+                    <h2 className='text-2xl font-extrabold'>Nothing to pay for</h2>
+                    <p className='text-sm text-base-content/60'>
+                        This class is no longer awaiting payment — it may have already been paid for or removed.
+                    </p>
+                    <Link to='/dashboard/selected-classes' className='btn btn-primary rounded-full'>
+                        Back to my selected classes
+                    </Link>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className='mx-auto w-full max-w-4xl px-4 md:px-0'>

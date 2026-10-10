@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { FaMusic, FaBars, FaTimes, FaSignOutAlt, FaThLarge } from 'react-icons/fa';
@@ -8,7 +8,14 @@ import ThemeToggle from '../ThemeToggle/ThemeToggle';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
-    const [userRole, setUserRole] = useState(null);
+    const location = useLocation();
+    const [userRole, setUserRole] = useState(() => {
+        try {
+            return localStorage.getItem('user-role') || null;
+        } catch {
+            return null;
+        }
+    });
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -16,6 +23,7 @@ const Navbar = () => {
         logOut()
             .then(() => {
                 localStorage.removeItem('user-role');
+                setUserRole(null);
             })
             .catch(error => {
                 console.log(error.message);
@@ -23,14 +31,30 @@ const Navbar = () => {
     };
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}users/${user?.email}`)
+        // No signed-in user: clear any stale role from a previous session.
+        if (!user?.email) {
+            setUserRole(null);
+            try {
+                localStorage.removeItem('user-role');
+            } catch {
+                /* ignore */
+            }
+            return;
+        }
+
+        let active = true;
+        fetch(`${import.meta.env.VITE_API_URL}users/${user.email}`)
             .then(res => res.json())
             .then(data => {
+                if (!active || !data?.role) return;
                 setUserRole(data.role);
                 localStorage.setItem('user-role', data.role);
             })
             .catch(() => {});
-    }, [user]);
+        return () => { active = false; };
+        // Re-run on navigation too, so a freshly registered user's role is
+        // picked up as soon as their account has been persisted.
+    }, [user?.email, location.pathname]);
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 12);

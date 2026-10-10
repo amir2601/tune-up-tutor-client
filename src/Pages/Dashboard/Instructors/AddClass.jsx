@@ -15,8 +15,8 @@ const AddClass = () => {
         const className = form.className.value;
         const name = form.name.value;
         const email = form.email.value;
-        const seats = form.seats.value;
-        const price = form.price.value;
+        const seats = Number(form.seats.value);
+        const price = Number(form.price.value);
         const img = form.img.value;
 
         const newClass = {
