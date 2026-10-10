@@ -1,150 +1,208 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { FaCheck, FaStar, FaArrowRight } from 'react-icons/fa';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { FaStar, FaUsers, FaUserTie, FaChair, FaArrowRight } from 'react-icons/fa';
+import { AuthContext } from '../../../Provider/AuthProvider';
+import Swal from 'sweetalert2';
 import { Stagger, StaggerItem } from '../../../components/Shared/Animations/Reveal';
 
-const plans = [
-    {
-        name: 'Beginner',
-        tagline: 'Perfect for first-timers',
-        monthly: 19,
-        featured: false,
-        features: [
-            '4 live lessons / month',
-            '1 instrument track',
-            'Practice resources library',
-            'Community access',
-        ],
-        cta: 'Start free',
-        to: '/sign-up',
-    },
-    {
-        name: 'Pro',
-        tagline: 'Most popular choice',
-        monthly: 39,
-        featured: true,
-        features: [
-            '12 live lessons / month',
-            'Unlimited instrument tracks',
-            'Personalised learning path',
-            'Progress reports & feedback',
-            'Priority tutor matching',
-        ],
-        cta: 'Go Pro',
-        to: '/classes',
-    },
-    {
-        name: 'Maestro',
-        tagline: 'For serious musicians',
-        monthly: 79,
-        featured: false,
-        features: [
-            'Unlimited live lessons',
-            '1-on-1 masterclasses',
-            'Performance & studio coaching',
-            'Exam & audition prep',
-            'Dedicated success manager',
-        ],
-        cta: 'Talk to us',
-        to: '/instructors',
-    },
-];
+const Skeleton = () => (
+    <div className="surface overflow-hidden bg-base-100">
+        <div className="h-52 w-full animate-pulse bg-base-300" />
+        <div className="card-body gap-3">
+            <div className="h-6 w-2/3 animate-pulse rounded-full bg-base-300" />
+            <div className="h-4 w-1/2 animate-pulse rounded-full bg-base-300" />
+            <div className="h-10 w-full animate-pulse rounded-full bg-base-300" />
+        </div>
+    </div>
+);
 
 const Pricing = () => {
-    const [annual, setAnnual] = useState(true);
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const [courses, setCourses] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [selectingId, setSelectingId] = useState(null);
+    const userRole = localStorage.getItem('user-role');
 
-    const price = (m) => (annual ? Math.round(m * 0.8) : m);
+    // Real data: top enrolled, approved classes from the API.
+    useEffect(() => {
+        fetch(`${import.meta.env.VITE_API_URL}popular-classes`)
+            .then(res => res.json())
+            .then(data => {
+                const approved = (data || []).filter(c => c.status === 'approved');
+                setCourses(approved.slice(0, 3));
+            })
+            .catch(() => setCourses([]))
+            .finally(() => setLoading(false));
+    }, []);
+
+    // Mirrors the class-card flow: add to Selected Classes, then user pays in
+    // the dashboard via the Stripe checkout.
+    const handleEnroll = (course) => {
+        if (!user) {
+            return navigate('/login');
+        }
+
+        const selectClass = { ...course, studentEmail: user.email, mainClassId: course._id };
+        setSelectingId(course._id);
+
+        fetch(`${import.meta.env.VITE_API_URL}select-class`, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(selectClass),
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Course Added to Selection',
+                        text: 'Head to your dashboard to complete payment.',
+                        showConfirmButton: false,
+                        timer: 1800,
+                    });
+                    navigate('/dashboard/selected-classes');
+                }
+            })
+            .catch(error => console.log(error))
+            .finally(() => setSelectingId(null));
+    };
+
+    const renderCta = (course) => {
+        const seats = Number(course.seats) || 0;
+        const isFull = seats <= 0;
+        const isStaff = userRole === 'admin' || userRole === 'instructor';
+
+        if (isFull) {
+            return (
+                <button type="button" disabled className="btn btn-primary w-full rounded-full border-0 disabled:bg-base-300 disabled:text-base-content/40">
+                    Class Full
+                </button>
+            );
+        }
+
+        if (isStaff) {
+            return (
+                <Link to="/classes" className="btn btn-primary w-full rounded-full border-0">
+                    Browse catalog <FaArrowRight className="text-xs" />
+                </Link>
+            );
+        }
+
+        return (
+            <button
+                type="button"
+                onClick={() => handleEnroll(course)}
+                disabled={selectingId === course._id}
+                className="btn btn-primary w-full rounded-full border-0 disabled:bg-base-300 disabled:text-base-content/40"
+            >
+                {selectingId === course._id ? (
+                    <span className="loading loading-spinner loading-sm" />
+                ) : (
+                    <>
+                        Enroll Now
+                        <FaArrowRight className="text-xs" />
+                    </>
+                )}
+            </button>
+        );
+    };
 
     return (
         <section id="pricing" className="scroll-mt-24 px-4 md:px-0">
             <div className="mx-auto mb-10 max-w-2xl space-y-3 text-center">
-                <span className="eyebrow mx-auto">Flexible plans</span>
+                <span className="eyebrow mx-auto">Top courses</span>
                 <h2 className="section-heading">Simple, Transparent <span className="text-gradient">Pricing</span></h2>
-                <p className="text-base-content/60">Learn at your own pace. Switch or cancel any time — no strings attached.</p>
+                <p className="text-base-content/60">
+                    One flat price per course — no hidden fees. Reserve your seat and pay securely in seconds.
+                </p>
             </div>
 
-            {/* Billing toggle */}
-            <div className="mb-12 flex items-center justify-center gap-4">
-                <span className={`text-sm font-semibold ${!annual ? 'text-base-content' : 'text-base-content/50'}`}>Monthly</span>
-                <button
-                    type="button"
-                    role="switch"
-                    aria-checked={annual}
-                    aria-label="Toggle annual billing"
-                    onClick={() => setAnnual(a => !a)}
-                    className={`relative h-8 w-16 rounded-full p-1 transition-colors duration-300 ${annual ? 'bg-primary' : 'bg-base-300'}`}
-                >
-                    <motion.span
-                        layout
-                        transition={{ type: 'spring', stiffness: 500, damping: 32 }}
-                        className={`block h-6 w-6 rounded-full bg-white shadow ${annual ? 'ml-8' : 'ml-0'}`}
-                    />
-                </button>
-                <span className={`text-sm font-semibold ${annual ? 'text-base-content' : 'text-base-content/50'}`}>
-                    Annual <span className="badge badge-success badge-sm ml-1 border-0 text-white">-20%</span>
-                </span>
-            </div>
+            {loading ? (
+                <div className="grid gap-6 lg:grid-cols-3">
+                    {[0, 1, 2].map(i => <Skeleton key={i} />)}
+                </div>
+            ) : courses.length ? (
+                <Stagger className="grid gap-6 lg:grid-cols-3" stagger={0.12} amount={0.1}>
+                    {courses.map((course, index) => {
+                        const seats = Number(course.seats) || 0;
+                        const isFull = seats <= 0;
+                        const featured = index === 0;
 
-            <Stagger className="grid gap-6 lg:grid-cols-3" stagger={0.12} amount={0.1}>
-                {plans.map(plan => (
-                    <StaggerItem
-                        key={plan.name}
-                        className={plan.featured ? 'lg:-mt-4' : ''}
-                    >
-                        <div
-                            className={`relative flex h-full flex-col overflow-hidden rounded-4xl p-8 transition-all duration-300 hover-lift ${
-                                plan.featured
-                                    ? 'bg-gradient-to-br from-primary via-brand-600 to-secondary text-white shadow-glow-lg'
-                                    : 'surface bg-base-100'
-                            }`}
-                        >
-                            {plan.featured && (
-                                <span className="absolute right-6 top-6 inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs font-bold uppercase tracking-wider backdrop-blur">
-                                    <FaStar className="text-warning" /> Popular
-                                </span>
-                            )}
-
-                            <h3 className={`text-lg font-extrabold uppercase tracking-wider ${plan.featured ? 'text-white' : 'text-primary'}`}>
-                                {plan.name}
-                            </h3>
-                            <p className={`mt-1 text-sm ${plan.featured ? 'text-white/70' : 'text-base-content/60'}`}>{plan.tagline}</p>
-
-                            <div className="mt-6 flex items-end gap-1">
-                                <span className="text-5xl font-extrabold tracking-tight">${price(plan.monthly)}</span>
-                                <span className={`pb-1.5 text-sm ${plan.featured ? 'text-white/70' : 'text-base-content/50'}`}>/month</span>
-                            </div>
-                            {annual && (
-                                <p className={`mt-1 text-xs ${plan.featured ? 'text-white/60' : 'text-base-content/50'}`}>
-                                    billed annually · save 20%
-                                </p>
-                            )}
-
-                            <ul className="mt-7 flex-1 space-y-3">
-                                {plan.features.map(feature => (
-                                    <li key={feature} className="flex items-start gap-3 text-sm">
-                                        <span className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full ${plan.featured ? 'bg-white/20' : 'bg-primary/10 text-primary'}`}>
-                                            <FaCheck className="text-[10px]" />
+                        return (
+                            <StaggerItem key={course._id} className={featured ? 'lg:-mt-4' : ''}>
+                                <div className={`relative flex h-full flex-col overflow-hidden rounded-4xl transition-all duration-300 hover-lift ${
+                                    featured
+                                        ? 'bg-gradient-to-br from-primary via-brand-600 to-secondary text-white shadow-glow-lg'
+                                        : 'surface card-shine bg-base-100'
+                                }`}>
+                                    {featured && (
+                                        <span className={`absolute right-6 top-6 z-10 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider backdrop-blur ${
+                                            featured ? 'bg-white/20 text-white' : 'bg-primary/10 text-primary'
+                                        }`}>
+                                            <FaStar className="text-warning" /> Most Popular
                                         </span>
-                                        <span className={plan.featured ? 'text-white/90' : 'text-base-content/75'}>{feature}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                                    )}
 
-                            <Link
-                                to={plan.to}
-                                className={`btn mt-8 w-full rounded-full ${
-                                    plan.featured
-                                        ? 'border-0 bg-white text-primary hover:bg-white/90'
-                                        : 'btn-primary'
-                                }`}
-                            >
-                                {plan.cta} <FaArrowRight className="text-xs" />
-                            </Link>
-                        </div>
-                    </StaggerItem>
-                ))}
-            </Stagger>
+                                    <figure className="relative h-44 overflow-hidden">
+                                        <img
+                                            className={`h-full w-full object-cover ${isFull ? 'grayscale' : ''}`}
+                                            src={course.img}
+                                            alt={course.className}
+                                            loading="lazy"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-neutral/55 via-transparent to-transparent" />
+                                    </figure>
+
+                                    <div className="flex flex-1 flex-col p-6">
+                                        <h3 className={`text-lg font-extrabold uppercase tracking-wider ${featured ? 'text-white' : 'text-primary'}`}>
+                                            {course.className}
+                                        </h3>
+                                        <p className={`mt-1 flex items-center gap-2 text-sm ${featured ? 'text-white/70' : 'text-base-content/60'}`}>
+                                            <FaUserTie className={featured ? 'text-white/70' : 'text-secondary'} />
+                                            {course.name}
+                                        </p>
+
+                                        <div className="mt-5 flex items-end gap-1">
+                                            <span className="text-5xl font-extrabold tracking-tight">${Number(course.price) || 0}</span>
+                                            <span className={`pb-1.5 text-sm ${featured ? 'text-white/70' : 'text-base-content/50'}`}>
+                                                / course
+                                            </span>
+                                        </div>
+                                        {isFull && (
+                                            <p className={`mt-1 text-xs font-semibold ${featured ? 'text-white/60' : 'text-error'}`}>
+                                                Sold out — no seats left
+                                            </p>
+                                        )}
+
+                                        <div className={`mt-6 flex items-center justify-between border-t pt-4 text-sm ${featured ? 'border-white/20' : 'border-base-300/70'}`}>
+                                            <span className={`flex items-center gap-2 ${featured ? 'text-white/70' : 'text-base-content/60'}`}>
+                                                <FaChair className="text-accent" /> {seats} seats left
+                                            </span>
+                                            <span className={`flex items-center gap-2 ${featured ? 'text-white/70' : 'text-base-content/60'}`}>
+                                                <FaUsers className="text-accent" /> {Number(course.students) || 0} enrolled
+                                            </span>
+                                        </div>
+
+                                        <div className="mt-6">
+                                            {renderCta(course)}
+                                        </div>
+                                    </div>
+                                </div>
+                            </StaggerItem>
+                        );
+                    })}
+                </Stagger>
+            ) : (
+                <div className="mx-auto flex max-w-xl flex-col items-center gap-3 py-10 text-center">
+                    <span className="text-5xl">🎸</span>
+                    <p className="text-lg font-bold">No courses available right now</p>
+                    <Link to="/classes" className="btn btn-primary btn-sm rounded-full">
+                        Browse all classes
+                    </Link>
+                </div>
+            )}
         </section>
     );
 };
