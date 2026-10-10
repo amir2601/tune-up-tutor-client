@@ -6,7 +6,7 @@ const LIGHT = 'tuneup';
 const DARK = 'tuneup-dark';
 const STORAGE_KEY = 'tuneup-theme';
 
-/** Resolve the theme to start with: saved choice, else OS preference, else light. */
+/** Resolve the theme to start with: saved choice, else light (the site default). */
 const resolveInitialTheme = () => {
     if (typeof window === 'undefined') return LIGHT;
     try {
@@ -15,9 +15,7 @@ const resolveInitialTheme = () => {
     } catch {
         /* ignore */
     }
-    const prefersDark = window.matchMedia
-        && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    return prefersDark ? DARK : LIGHT;
+    return LIGHT;
 };
 
 const ThemeProvider = ({ children }) => {

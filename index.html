@@ -6,14 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#7c3aed" />
     <script>
-      // Apply the saved (or preferred) theme before first paint to avoid a flash.
+      // Apply the saved theme before first paint to avoid a flash.
+      // Light is the site default; dark is only used if the visitor chose it.
       (function () {
         try {
           var key = 'tuneup-theme';
           var saved = localStorage.getItem(key);
-          var theme = saved === 'tuneup' || saved === 'tuneup-dark'
-            ? saved
-            : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'tuneup-dark' : 'tuneup');
+          var theme = saved === 'tuneup' || saved === 'tuneup-dark' ? saved : 'tuneup';
           document.documentElement.setAttribute('data-theme', theme);
           document.documentElement.style.colorScheme = theme === 'tuneup-dark' ? 'dark' : 'light';
         } catch (e) { /* ignore */ }
