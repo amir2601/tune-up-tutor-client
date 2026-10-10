@@ -1,0 +1,22 @@
+{
+  "name": "TuneUp Tutor",
+  "short_name": "TuneUp",
+  "description": "Learn music with world-class instructors — guitar, piano, drums, violin, flute and more.",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#7c3aed",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}
