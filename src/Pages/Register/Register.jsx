@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import useTitle from '../../Hooks/useTitle';
 import { AuthContext } from '../../Provider/AuthProvider';
 import SocialLogin from '../../components/Shared/SocialLogin/SocialLogin';
-import Swal from 'sweetalert2';
+import { toast } from '../../lib/feedback';
 import { FaMusic, FaCheckCircle } from 'react-icons/fa';
 
 
@@ -66,13 +66,11 @@ const Register = () => {
                 }
                 form.reset();
                 setError('')
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Sign Up Successfull',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
+                toast({
+                    type: 'success',
+                    title: 'Sign up successful',
+                    text: `Welcome, ${name}! Your student account is ready.`,
+                });
                 navigate('/')
             })
             .catch(error => {

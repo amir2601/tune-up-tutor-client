@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
-import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { alertDialog } from '../../../lib/feedback';
 
 const SocialLogin = () => {
     const { googleLogin } = useContext(AuthContext);
@@ -47,11 +47,11 @@ const SocialLogin = () => {
                     ? 'The Google OAuth client for this app was deleted. Please recreate it in the Firebase / Google Cloud console.'
                     : friendly[error.code] || error.message;
 
-                Swal.fire({
-                    icon: 'error',
+                alertDialog({
+                    type: 'error',
                     title: 'Google sign-in failed',
                     text,
-                    confirmButtonColor: '#7c3aed',
+                    confirmText: 'Got it',
                 });
             })
     }

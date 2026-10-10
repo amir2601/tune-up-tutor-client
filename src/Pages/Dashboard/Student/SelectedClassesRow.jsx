@@ -1,31 +1,29 @@
 import { Link } from 'react-router-dom';
 import { FaTrashAlt, FaCreditCard } from 'react-icons/fa';
-import Swal from 'sweetalert2';
+import { confirmDialog, toast } from '../../../lib/feedback';
 
-const SelectedClassesRow = ({ singleClass, index, setReload }) => {
+const SelectedClassesRow = ({ singleClass, index, setReload, checked, onToggle }) => {
 
     const handleDeleteClass = id => {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#7c3aed',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+        confirmDialog({
+            title: 'Remove this class?',
+            text: `"${singleClass.className}" will be removed from your selected classes.`,
+            confirmText: 'Remove',
+            cancelText: 'Keep it',
+            danger: true,
         }).then((result) => {
-            if (result.isConfirmed) {
+            if (result) {
                 fetch(`${import.meta.env.VITE_API_URL}select-class/${id}`, {
                     method: 'DELETE',
                 })
                     .then(res => res.json())
                     .then(data => {
                         if (data.deletedCount > 0) {
-                            Swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
-                                'success'
-                            )
+                            toast({
+                                type: 'success',
+                                title: 'Class removed',
+                                text: `"${singleClass.className}" was removed from your selection.`
+                            })
                             setReload(prevReload => !prevReload);
                         }
                     })
@@ -35,6 +33,15 @@ const SelectedClassesRow = ({ singleClass, index, setReload }) => {
 
     return (
         <tr className='hover'>
+            <td>
+                <input
+                    type="checkbox"
+                    className="checkbox checkbox-primary checkbox-sm"
+                    checked={checked}
+                    onChange={() => onToggle(singleClass._id)}
+                    aria-label={`Select ${singleClass.className}`}
+                />
+            </td>
             <td className='font-semibold text-base-content/50'>
                 {index + 1}
             </td>

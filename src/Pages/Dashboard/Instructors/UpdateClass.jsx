@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import useTitle from '../../../Hooks/useTitle';
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import { toast } from '../../../lib/feedback';
 import { FaSave } from 'react-icons/fa';
 import { Reveal } from '../../../components/Shared/Animations/Reveal';
 
@@ -37,13 +37,11 @@ const UpdateClass = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Your class has been updated',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
+                    toast({
+                        type: 'success',
+                        title: 'Class updated',
+                        text: 'Your changes have been saved.',
+                    });
                     navigate('/dashboard/my-class')
                 }
             })

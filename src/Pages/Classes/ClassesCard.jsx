@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FaStar, FaUsers, FaUserTie, FaEnvelope, FaChair, FaCheck } from 'react-icons/fa';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import { toast } from '../../lib/feedback';
 
 const ClassesCard = ({ singleClass }) => {
     const { user } = useContext(AuthContext);
@@ -31,13 +31,14 @@ const ClassesCard = ({ singleClass }) => {
             .then(res => res.json())
             .then(data => {
                 if (data.insertedId) {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Class Successfully Added',
-                        text: 'Find it in your dashboard under Selected Classes.',
-                        showConfirmButton: false,
-                        timer: 1800,
+                    toast({
+                        type: 'success',
+                        title: 'Class added to your selection',
+                        text: 'Complete the secure checkout to enrol.',
+                        action: {
+                            label: 'Go to payment',
+                            onClick: () => navigate(`/dashboard/payment/${singleClass._id}`),
+                        },
                     });
                 }
             })

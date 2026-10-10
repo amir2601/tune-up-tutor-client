@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
-import Swal from 'sweetalert2';
+import { toast } from '../../../lib/feedback';
 import useTitle from '../../../Hooks/useTitle';
 import { FaPlus, FaInfoCircle } from 'react-icons/fa';
 import { Reveal } from '../../../components/Shared/Animations/Reveal';
@@ -40,13 +40,11 @@ const AddClass = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.insertedId) {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Class successfully added',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
+                    toast({
+                        type: 'success',
+                        title: 'Class submitted',
+                        text: 'Your class was added and is awaiting admin approval.',
+                    });
                     form.reset()
                 }
             })

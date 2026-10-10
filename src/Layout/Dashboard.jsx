@@ -76,14 +76,14 @@ const Dashboard = () => {
             <div className="drawer-side z-40">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <aside className="flex h-full w-72 flex-col bg-neutral text-neutral-content">
-                    <div className="flex items-center gap-2.5 border-b border-white/10 px-5 py-5">
+                    <Link to="/" className="flex items-center gap-2.5 border-b border-white/10 px-5 py-5 transition hover:bg-white/5">
                         <span className="grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br from-primary to-secondary text-white shadow-soft">
                             <FaMusic className="text-lg" />
                         </span>
                         <span className="text-lg font-extrabold tracking-tight text-white">
                             Tune<span className="text-primary">Up</span>
                         </span>
-                    </div>
+                    </Link>
 
                     <div className="flex items-center gap-3 px-5 py-5">
                         <div className="avatar">

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { AuthContext } from '../../../Provider/AuthProvider';
-import { FaMusic, FaBars, FaTimes, FaSignOutAlt, FaThLarge } from 'react-icons/fa';
+import { FaMusic, FaBars, FaTimes, FaSignOutAlt, FaThLarge, FaCheckDouble, FaCheckCircle } from 'react-icons/fa';
 import AnnouncementBar from '../AnnouncementBar/AnnouncementBar';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 
@@ -162,6 +162,20 @@ const Navbar = () => {
                                         <FaThLarge className="text-primary" /> Dashboard
                                     </Link>
                                 </li>
+                                {userRole === 'student' && (
+                                    <>
+                                        <li>
+                                            <Link to="/dashboard/selected-classes" className="gap-3 rounded-xl font-semibold">
+                                                <FaCheckDouble className="text-secondary" /> My Selected Classes
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link to="/dashboard/enrolled-classes" className="gap-3 rounded-xl font-semibold">
+                                                <FaCheckCircle className="text-success" /> My Enrolled Classes
+                                            </Link>
+                                        </li>
+                                    </>
+                                )}
                                 <li>
                                     <button onClick={handleLogOut} className="gap-3 rounded-xl font-semibold text-error">
                                         <FaSignOutAlt /> Log Out

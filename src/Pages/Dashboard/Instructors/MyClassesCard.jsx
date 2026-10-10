@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaCommentDots, FaPen } from 'react-icons/fa';
-import Swal from 'sweetalert2';
+import { alertDialog } from '../../../lib/feedback';
 
 const statusStyles = {
     approved: 'badge-success',
@@ -12,7 +12,12 @@ const statusStyles = {
 const MyClassesCard = ({ singleClass, index }) => {
 
     const handleFeedback = () => {
-        Swal.fire('Admin Feedback', singleClass.feedback)
+        alertDialog({
+            type: 'info',
+            title: 'Admin Feedback',
+            text: singleClass.feedback || 'No feedback has been provided yet.',
+            confirmText: 'Got it',
+        });
     }
 
     return (

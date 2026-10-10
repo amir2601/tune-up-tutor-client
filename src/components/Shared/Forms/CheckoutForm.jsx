@@ -2,7 +2,7 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import './CheckoutForm.css'
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
-import Swal from 'sweetalert2';
+import { toast } from '../../../lib/feedback';
 import { useNavigate } from 'react-router-dom';
 import { FaLock } from 'react-icons/fa';
 
@@ -110,13 +110,11 @@ const CheckoutForm = ({ singleClass }) => {
             })
                 .then(res => res.json())
                 .then(() => {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Payment Successfully Done',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
+                    toast({
+                        type: 'success',
+                        title: 'Payment successful',
+                        text: 'You are now enrolled. See you in class!',
+                    });
                     navigate('/dashboard/enrolled-classes')
                 })
                 .catch(error => {

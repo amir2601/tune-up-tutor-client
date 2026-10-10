@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaStar, FaUsers, FaUserTie, FaChair, FaArrowRight } from 'react-icons/fa';
 import { AuthContext } from '../../../Provider/AuthProvider';
-import Swal from 'sweetalert2';
+import { toast } from '../../../lib/feedback';
 import { Stagger, StaggerItem } from '../../../components/Shared/Animations/Reveal';
 
 const Skeleton = () => (
@@ -54,13 +54,10 @@ const Pricing = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.insertedId) {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Course Added',
+                    toast({
+                        type: 'success',
+                        title: 'Course added',
                         text: 'Complete the secure checkout to finish enrolling.',
-                        showConfirmButton: false,
-                        timer: 1500,
                     });
                     navigate(`/dashboard/payment/${course._id}`);
                 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaCheck, FaTimes, FaCommentDots } from 'react-icons/fa';
-import Swal from 'sweetalert2';
+import { promptDialog, toast } from '../../../lib/feedback';
 
 const statusStyles = {
     approved: 'badge-success',
@@ -27,18 +27,14 @@ const ManageClassesCard = ({ singleClass, index, setReload }) => {
     }
 
     const handleFeedback = async (id) => {
-        const { value: text } = await Swal.fire({
-            input: 'textarea',
-            inputLabel: 'Message',
-            inputPlaceholder: 'Type your message here...',
-            inputAttributes: {
-                'aria-label': 'Type your message here'
-            },
-            showCancelButton: true
+        const text = await promptDialog({
+            title: 'Send feedback',
+            text: 'Let the instructor know what changes are needed before approval.',
+            placeholder: 'Type your message here...',
+            confirmText: 'Send',
         })
 
         if (text) {
-            Swal.fire(text)
             const feedback = { feedback: text };
 
             fetch(`${import.meta.env.VITE_API_URL}feedback/${id}`, {
@@ -50,7 +46,21 @@ const ManageClassesCard = ({ singleClass, index, setReload }) => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                    if (data.modifiedCount > 0) {
+                        toast({
+                            type: 'success',
+                            title: 'Feedback sent',
+                            text: `Your message was sent for "${singleClass.className}".`,
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    toast({
+                        type: 'error',
+                        title: 'Could not send feedback',
+                        text: 'Please try again.',
+                    });
                 })
         }
     }

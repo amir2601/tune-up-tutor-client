@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import { toast } from '../../../lib/feedback';
 import { motion } from 'framer-motion';
 import { FaFacebookF, FaGithub, FaInstagram, FaLinkedinIn, FaMusic, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
 
@@ -17,13 +17,10 @@ const Footer = () => {
     const handleSubscribe = (e) => {
         e.preventDefault();
         if (!email) return;
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
+        toast({
+            type: 'success',
             title: "You're on the list!",
             text: 'Watch your inbox for fresh lessons and offers.',
-            showConfirmButton: false,
-            timer: 2000,
         });
         setEmail('');
     };
