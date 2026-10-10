@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { FaLock } from 'react-icons/fa';
 
 const CheckoutForm = ({ singleClass }) => {
     const navigate = useNavigate()
@@ -128,7 +129,7 @@ const CheckoutForm = ({ singleClass }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='space-y-4'>
             <CardElement
                 options={{
                     style: {
@@ -145,11 +146,11 @@ const CheckoutForm = ({ singleClass }) => {
                     },
                 }}
             />
-            <button type="submit" disabled={!stripe} className='btn btn-sm  btn-accent btn-outline'>
-                Pay
+            <button type="submit" disabled={!stripe} className='btn btn-primary w-full rounded-full gap-2 shadow-soft'>
+                <FaLock className='text-xs' /> Pay
             </button>
             <br />
-            {cardError && <p className='text-red-500 font-semibold'>{cardError}</p>}
+            {cardError && <p className='text-sm font-semibold text-red-500'>{cardError}</p>}
         </form>
     );
 };

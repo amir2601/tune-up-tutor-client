@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom';
+import { FaTrashAlt, FaCreditCard } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 const SelectedClassesRow = ({ singleClass, index, setReload }) => {
 
     const handleDeleteClass = id => {
-        console.log(id);
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
+            confirmButtonColor: '#7c3aed',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
@@ -34,31 +34,35 @@ const SelectedClassesRow = ({ singleClass, index, setReload }) => {
     }
 
     return (
-        <tr>
-            <td>
+        <tr className='hover'>
+            <td className='font-semibold text-base-content/50'>
                 {index + 1}
             </td>
             <td>
-                <div className="flex items-center space-x-3">
-                    <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                            <img src={singleClass.img} />
-                        </div>
+                <div className="avatar">
+                    <div className="mask mask-squircle h-12 w-12 ring-2 ring-base-300">
+                        <img src={singleClass.img} alt={singleClass.className} />
                     </div>
                 </div>
             </td>
             <td>
-                <div className="font-bold">{singleClass.className}</div>
+                <div className="font-bold capitalize">{singleClass.className}</div>
             </td>
-            <td>
+            <td className='text-base-content/70'>
                 {singleClass.name}
             </td>
-            <td>{singleClass.price}</td>
             <td>
-                <Link onClick={() => handleDeleteClass(singleClass._id)} className="btn btn-outline btn-xs">Delete</Link>
+                <span className='badge badge-primary badge-outline font-semibold'>${singleClass.price}</span>
             </td>
             <td>
-                <Link to={`/dashboard/payment/${singleClass._id}`} className="btn btn-outline btn-xs" onClick={() => handlePaymentModal(singleClass._id)}>Pay</Link>
+                <button onClick={() => handleDeleteClass(singleClass._id)} className="btn btn-ghost btn-xs gap-1 text-error hover:bg-error/10">
+                    <FaTrashAlt /> Delete
+                </button>
+            </td>
+            <td>
+                <Link to={`/dashboard/payment/${singleClass._id}`} className="btn btn-primary btn-xs gap-1 rounded-full">
+                    <FaCreditCard /> Pay
+                </Link>
             </td>
         </tr>
     );

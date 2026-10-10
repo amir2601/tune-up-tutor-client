@@ -4,43 +4,46 @@ import useTitle from '../../../Hooks/useTitle';
 import PopularInstructor from './PopulerInstructor';
 import PopularClasses from './PopularClasses';
 import Faq from './Faq';
-import { motion } from "framer-motion"
 import ArtOfMusic from './ArtOfMusic';
 import AboutTheInstruments from './AboutTheInstruments';
 import Testimonials from './Testimonials';
 import Partners from './Partners';
+import Stats from './Stats';
+import HowItWorks from './HowItWorks';
+import Gallery from './Gallery';
+import Pricing from './Pricing';
+import CtaBanner from './CtaBanner';
 
 const Home = () => {
     useTitle('Home');
 
     return (
-        <div className='space-y-10 my-5'>
-            <Slider></Slider>
-            <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 5 }}
-            >
-                <PopularInstructor></PopularInstructor>
-            </motion.div>
-            <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 5 }}
-            >
-                <PopularClasses></PopularClasses>
-            </motion.div>
-            <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 5 }}
-            >
-                <ArtOfMusic></ArtOfMusic>
-                <AboutTheInstruments></AboutTheInstruments>
-                <Testimonials></Testimonials>
-                <Partners></Partners>
-                <Faq></Faq>
-            </motion.div>
+        <div className="mx-auto my-5 max-w-7xl space-y-20">
+            <Slider />
+
+            <Stats />
+
+            <HowItWorks />
+
+            <PopularInstructor />
+
+            <PopularClasses />
+
+            <ArtOfMusic />
+
+            <AboutTheInstruments />
+
+            <Gallery />
+
+            <Pricing />
+
+            <Testimonials />
+
+            <Partners />
+
+            <Faq />
+
+            <CtaBanner />
         </div>
     );
 };

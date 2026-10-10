@@ -2,8 +2,183 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-base-200 text-base-content font-sans antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  ::selection {
+    @apply bg-primary/20 text-primary;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-base-300;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/50;
+  }
+}
+
+@layer components {
+  /* Soft page container */
+  .page-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Gradient text used across headings */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+  }
+
+  /* Small uppercase eyebrow label */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary;
+  }
+
+  /* Section heading block */
+  .section-heading {
+    @apply text-3xl font-extrabold tracking-tight sm:text-4xl;
+  }
+
+  /* Reusable elevated surface */
+  .surface {
+    @apply rounded-3xl border border-base-300/70 bg-base-100 shadow-card;
+  }
+
+  /* Glass sticky navigation bar */
+  .glass-nav {
+    @apply border-b border-base-300/60 bg-base-100/80 backdrop-blur-lg;
+  }
+
+  /* Hover lift for cards */
+  .hover-lift {
+    @apply transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-glow;
+  }
+
+  /* Animated gradient surface (looping background-position) */
+  .gradient-animate {
+    background-size: 300% 300%;
+    @apply animate-gradient;
+  }
+
+  /* Gradient hairline border wrapper */
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(theme(colors.base-100), theme(colors.base-100)) padding-box,
+      linear-gradient(120deg, #7c3aed, #db2777, #06b6d4) border-box;
+    border: 1px solid transparent;
+  }
+
+  /* Shine sweep on hover (add to a `group` parent) */
+  .card-shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .card-shine::after {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 45%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+    transform: translateX(-130%) skewX(-14deg);
+    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+  }
+  .group:hover .card-shine::after {
+    transform: translateX(230%) skewX(-14deg);
+  }
+
+  /* Faint dotted / grid background */
+  .bg-dots {
+    background-image: radial-gradient(rgba(124, 58, 237, 0.14) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  .bg-grid {
+    background-image: linear-gradient(rgba(124, 58, 237, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(124, 58, 237, 0.06) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  /* Underline that grows on hover (for text links) */
+  .link-underline {
+    position: relative;
+  }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 2px;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, #7c3aed, #db2777);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-underline:hover::after,
+  .link-underline[data-active='true']::after {
+    transform: scaleX(1);
+  }
+
+  /* Marquee helpers */
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  }
+  .pause-on-hover:hover {
+    animation-play-state: paused;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .will-move {
+    will-change: transform;
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Light Theme */
 .home-page.light {
-    background-color: #ffffff;
-    color: #000000;
+  background-color: #ffffff;
+  color: #000000;
 }

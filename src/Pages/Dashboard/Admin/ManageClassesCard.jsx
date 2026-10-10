@@ -1,11 +1,17 @@
 import React from 'react';
+import { FaCheck, FaTimes, FaCommentDots } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+
+const statusStyles = {
+    approved: 'badge-success',
+    deny: 'badge-error',
+    pending: 'badge-warning',
+};
 
 const ManageClassesCard = ({ singleClass, index, setReload }) => {
 
     const handleUpdateStatus = (status, id) => {
         const updateStatus = { status: status }
-        console.log(updateStatus);
 
         fetch(`${import.meta.env.VITE_API_URL}classes/${id}`, {
             method: 'PATCH',
@@ -16,7 +22,6 @@ const ManageClassesCard = ({ singleClass, index, setReload }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setReload(prevReload => !prevReload);
             })
     }
@@ -34,8 +39,7 @@ const ManageClassesCard = ({ singleClass, index, setReload }) => {
 
         if (text) {
             Swal.fire(text)
-            const feedback = {feedback: text};
-            console.log(feedback);
+            const feedback = { feedback: text };
 
             fetch(`${import.meta.env.VITE_API_URL}feedback/${id}`, {
                 method: 'PATCH',
@@ -52,37 +56,45 @@ const ManageClassesCard = ({ singleClass, index, setReload }) => {
     }
 
     return (
-        <tr>
-            <td>
+        <tr className='hover'>
+            <td className='font-semibold text-base-content/50'>
                 {index + 1}
             </td>
             <td>
-                <div className="flex items-center space-x-3">
-                    <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                            <img src={singleClass.img} />
-                        </div>
+                <div className="avatar">
+                    <div className="mask mask-squircle h-12 w-12 ring-2 ring-base-300">
+                        <img src={singleClass.img} alt={singleClass.className} />
                     </div>
                 </div>
             </td>
             <td>
-                <div className="font-bold">{singleClass.className}</div>
+                <div className="font-bold capitalize">{singleClass.className}</div>
             </td>
             <td>
-                <h3 className='font-semibold'>{singleClass.name}</h3>
-                <span>{singleClass.email}</span>
+                <p className='font-semibold'>{singleClass.name}</p>
+                <span className='text-xs text-base-content/60'>{singleClass.email}</span>
             </td>
             <td className='text-center'>{singleClass.seats}</td>
-            <td className='text-end'>{singleClass.price}</td>
-            <td>{singleClass.status}</td>
+            <td className='text-end font-semibold'>${singleClass.price}</td>
             <td>
-                <button onClick={() => handleUpdateStatus('approved', singleClass._id)} disabled={singleClass?.status === 'approved' || singleClass?.status === 'deny'} className="btn btn-outline btn-success btn-xs">Approve</button>
+                <span className={`badge badge-outline font-semibold capitalize ${statusStyles[singleClass.status] || 'badge-ghost'}`}>
+                    {singleClass.status}
+                </span>
             </td>
             <td>
-                <button onClick={() => handleUpdateStatus('deny', singleClass._id)} disabled={singleClass?.status === 'deny' || singleClass?.status === 'approved'} className="btn btn-outline btn-error btn-xs">Deny</button>
+                <button onClick={() => handleUpdateStatus('approved', singleClass._id)} disabled={singleClass?.status === 'approved' || singleClass?.status === 'deny'} className="btn btn-success btn-xs gap-1 rounded-full text-white">
+                    <FaCheck /> Approve
+                </button>
             </td>
             <td>
-                <button onClick={() => handleFeedback(singleClass._id)} className="btn btn-outline btn-xs">Feedback</button>
+                <button onClick={() => handleUpdateStatus('deny', singleClass._id)} disabled={singleClass?.status === 'deny' || singleClass?.status === 'approved'} className="btn btn-error btn-xs gap-1 rounded-full text-white">
+                    <FaTimes /> Deny
+                </button>
+            </td>
+            <td>
+                <button onClick={() => handleFeedback(singleClass._id)} className="btn btn-outline btn-xs gap-1 rounded-full">
+                    <FaCommentDots /> Feedback
+                </button>
             </td>
         </tr>
     );

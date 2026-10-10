@@ -1,35 +1,62 @@
 import React from 'react';
+import { Reveal, Stagger, StaggerItem } from '../../../components/Shared/Animations/Reveal';
+
+const instruments = [
+    {
+        name: 'Guitar',
+        img: 'https://i.ibb.co/K6Q3XHd/guitar.png',
+        text: "The guitar's strings resonate, weaving emotions into melodies that linger in the heart's chambers.",
+        tint: 'from-primary/10 to-primary/0',
+    },
+    {
+        name: 'Drum',
+        img: 'https://i.ibb.co/rc6Z3GY/drum-set.png',
+        text: 'Drums thunder like the heartbeat of rhythm, anchoring songs in a primal dance of sound.',
+        tint: 'from-secondary/10 to-secondary/0',
+    },
+    {
+        name: 'Flute',
+        img: 'https://i.ibb.co/QX73Nys/flute.png',
+        text: "The flute's delicate whispers carry dreams upon notes that flutter like a bird's song in the breeze.",
+        tint: 'from-accent/10 to-accent/0',
+    },
+    {
+        name: 'Violin',
+        img: 'https://i.ibb.co/2vvLXYF/violin.png',
+        text: "The violin's lament weaves tales of longing and passion, its strings echoing the human soul.",
+        tint: 'from-warning/10 to-warning/0',
+    },
+];
 
 const AboutTheInstruments = () => {
     return (
-        <div className='my-20 px-4 md:px-0'>
-            <p className='italic text-purple-400'>Dedication to Teaching</p>
-            <h1 className='text-3xl md:text-5xl font-semibold my-6'>ABOUT THE <span className='text-purple-400'>INSTRUMENTS</span></h1>
-            <p>Unlock your musical journey with expert guidance</p>
+        <section className="px-4 md:px-0">
+            <Reveal className="mx-auto max-w-2xl space-y-3 text-center">
+                <span className="eyebrow mx-auto">Dedication to Teaching</span>
+                <h2 className="section-heading">About the <span className="text-gradient">Instruments</span></h2>
+                <p className="text-base-content/60">Unlock your musical journey with expert guidance.</p>
+            </Reveal>
 
-            <div className='grid md:grid-cols-4 gap-4 mt-16'>
-                <div className='p-4 group'>
-                    <img className='group-hover:-translate-y-3 duration-300' src="https://i.ibb.co/K6Q3XHd/guitar.png" alt="" />
-                    <h3 className='text-2xl mt-4 mb-2 text-purple-400'>Guitar</h3>
-                    <p className=''>The guitar's strings resonate, weaving emotions into melodies that linger in the heart's chambers.</p>
-                </div>
-                <div className='p-4 group'>
-                    <img className='group-hover:-translate-y-3 duration-300' src="https://i.ibb.co/rc6Z3GY/drum-set.png" alt="" />
-                    <h3 className='text-2xl mt-4 mb-2 text-purple-400'>Drum</h3>
-                    <p className=''>Drums thunder like the heartbeat of rhythm, anchoring songs in a primal dance of sound.</p>
-                </div>
-                <div className='p-4 group'>
-                    <img className='group-hover:-translate-y-3 duration-300' src="https://i.ibb.co/QX73Nys/flute.png" alt="" />
-                    <h3 className='text-2xl mt-4 mb-2 text-purple-400'>Flute</h3>
-                    <p className=''>The flute's delicate whispers carry dreams upon notes that flutter like a bird's song in the breeze.</p>
-                </div>
-                <div className='p-4 group'>
-                    <img className='group-hover:-translate-y-3 duration-300' src="https://i.ibb.co/2vvLXYF/violin.png" alt="" />
-                    <h3 className='text-2xl mt-4 mb-2 text-purple-400'>Violin</h3>
-                    <p className=''>The violin's lament weaves tales of longing and passion, its strings echoing the human soul.</p>
-                </div>
-            </div>
-        </div>
+            <Stagger className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" stagger={0.1}>
+                {instruments.map(instrument => (
+                    <StaggerItem
+                        key={instrument.name}
+                        className={`group surface hover-lift card-shine flex flex-col items-center overflow-hidden bg-gradient-to-b ${instrument.tint} bg-base-100 p-6 text-center`}
+                    >
+                        <div className="grid h-28 w-full place-items-center">
+                            <img
+                                className="max-h-24 transition-transform duration-500 group-hover:-translate-y-2 group-hover:scale-105"
+                                src={instrument.img}
+                                alt={instrument.name}
+                                loading="lazy"
+                            />
+                        </div>
+                        <h3 className="mt-4 text-xl font-bold text-primary">{instrument.name}</h3>
+                        <p className="mt-2 text-sm leading-relaxed text-base-content/60">{instrument.text}</p>
+                    </StaggerItem>
+                ))}
+            </Stagger>
+        </section>
     );
 };
 

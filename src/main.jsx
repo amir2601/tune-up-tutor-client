@@ -8,13 +8,16 @@ import {
 } from "react-router-dom";
 import router from './Routes/Routes.jsx';
 import AuthProvider from './Provider/AuthProvider.jsx';
+import ThemeProvider from './Provider/ThemeProvider.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <div className='max-w-7xl mx-auto'>
+  <div className='min-h-screen w-full bg-base-200'>
     <React.StrictMode>
-      <AuthProvider>
-        <RouterProvider router={router} />
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
+      </ThemeProvider>
     </React.StrictMode>
   </div>,
 )
