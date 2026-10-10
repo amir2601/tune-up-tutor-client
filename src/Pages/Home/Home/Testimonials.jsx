@@ -15,7 +15,7 @@ const testimonials = [
 ];
 
 const Card = ({ t }) => (
-    <div className="surface hover-lift mx-3 flex w-[320px] shrink-0 flex-col gap-4 bg-base-100 p-6 sm:w-[360px]">
+    <div className="surface hover-lift-quiet mx-3 flex w-[320px] shrink-0 flex-col gap-4 bg-base-100 p-6 sm:w-[360px]">
         <div className="flex items-center justify-between">
             <FaQuoteLeft className="text-2xl text-primary/30" />
             <div className="flex gap-1 text-warning">

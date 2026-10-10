@@ -11,7 +11,7 @@ const partners = [
 ];
 
 const Logo = ({ partner }) => (
-    <div className="mx-3 flex h-24 w-44 shrink-0 items-center justify-center rounded-2xl border border-base-300/70 bg-base-100 p-6 shadow-card grayscale transition-all duration-300 hover:-translate-y-1 hover:grayscale-0 hover:shadow-glow">
+    <div className="mx-3 flex h-24 w-44 shrink-0 items-center justify-center rounded-2xl border border-base-300/70 bg-base-100 p-6 shadow-card grayscale transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:grayscale-0">
         <img className="max-h-14 w-auto object-contain" src={partner.img} alt={partner.name} loading="lazy" />
     </div>
 );

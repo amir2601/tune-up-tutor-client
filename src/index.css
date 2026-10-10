@@ -71,6 +71,12 @@
     @apply transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-glow;
   }
 
+  /* Hover lift for cards inside clipped strips (marquee) — uses a border tint
+     instead of an outer shadow, so the glow can't be sliced by the edges. */
+  .hover-lift-quiet {
+    @apply transition-all duration-300 ease-out hover:-translate-y-1.5 hover:border-primary/40;
+  }
+
   /* Animated gradient surface (looping background-position) */
   .gradient-animate {
     background-size: 300% 300%;
